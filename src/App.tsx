@@ -1,56 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import { useEffect } from 'react';
 import './App.css';
+import { useGetAllMeals } from "./app/graphql/customHooks/meal.customHooks"
+import { MEAL_getAllMeals } from './app/graphql/queries/__generated__/GET_ALL_MEALS';
+
+
 
 function App() {
+
+  const { data } = useGetAllMeals()
+
+  useEffect(() => {
+    console.log(data)
+  }, [data])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      <h1>TENGO EL CONTROL</h1>
+      {data?.getAllMeals.map((meal: MEAL_getAllMeals) => {
+        return <h3>{meal.name} {meal.price}</h3>
+      })}
+      <p></p>
     </div>
   );
 }
