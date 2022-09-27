@@ -1,20 +1,18 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import mealServices from './app/services/mealServices';
-import { getMealsToCookQuery_getMealsToCook } from './app/services/mealServices/queries/__generated__/getMealsToCookQuery';
-import { getMenuQuery_getMenu } from './app/services/mealServices/queries/__generated__/getMenuQuery';
-
+import reviewServices from './app/services/reviewServices';
+import { getReviewsQuery_getReviews } from './app/services/reviewServices/queries/__generated__/getReviewsQuery';
 
 
 function App() {
 
-  const [mealDetails, setMealDetails] = useState<Array<getMealsToCookQuery_getMealsToCook | null> | null>(null)
+  const [mealDetails, setMealDetails] = useState<Array<getReviewsQuery_getReviews | null> | null>(null)
 
   // const [meals, setMeals] = useState<Array<getAllMealsQuery_getAllMeals | null>>([])
 
   useEffect(() => {
-    mealServices
-      .getMealsToCook()
+    reviewServices
+      .getReviews('630d14cef19d5545b990ec85')
       .then(data => {
         console.log('la respuesta', data)
         setMealDetails(data)
@@ -37,8 +35,8 @@ function App() {
       <h1>TENGO EL CONTROL</h1>
 
       {
-        mealDetails?.map(meal => {
-          return <h3>{meal?.meal?.name}</h3>
+        mealDetails?.map(review => {
+          return <h3>{review?.comment}</h3>
         })
       }
       <p></p>
