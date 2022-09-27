@@ -1,22 +1,22 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import mealServices from './app/services/mealServices';
-import { getAllMealsQuery_getAllMeals } from './app/services/mealServices/queries/__generated__/getAllMealsQuery';
-import { getMealDetailsQuery_getMealDetails } from './app/services/mealServices/queries/__generated__/getMealDetailsQuery';
+import { getMealsToCookQuery_getMealsToCook } from './app/services/mealServices/queries/__generated__/getMealsToCookQuery';
+import { getMenuQuery_getMenu } from './app/services/mealServices/queries/__generated__/getMenuQuery';
 
 
 
 function App() {
 
-  const [mealDetails, setMealDetails] = useState<getMealDetailsQuery_getMealDetails | null>(null)
+  const [mealDetails, setMealDetails] = useState<Array<getMealsToCookQuery_getMealsToCook | null> | null>(null)
 
   // const [meals, setMeals] = useState<Array<getAllMealsQuery_getAllMeals | null>>([])
 
   useEffect(() => {
     mealServices
-      .getMealDetails("6318f6cc12e12a635fbb0235")
+      .getMealsToCook()
       .then(data => {
-        console.log(data)
+        console.log('la respuesta', data)
         setMealDetails(data)
       })
       .catch(err => console.log(err))
@@ -35,12 +35,12 @@ function App() {
   return (
     <div className="App">
       <h1>TENGO EL CONTROL</h1>
-      <h3>{mealDetails?.name} {mealDetails?.category}</h3>
-      {/* {
-        meals.map(meal => {
-          return <h3>{meal?.name} {meal?.price}</h3>
+
+      {
+        mealDetails?.map(meal => {
+          return <h3>{meal?.meal?.name}</h3>
         })
-      } */}
+      }
       <p></p>
     </div>
   );
