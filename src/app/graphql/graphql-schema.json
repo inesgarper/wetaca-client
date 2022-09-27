@@ -196,7 +196,7 @@
             "deprecationReason": null
           },
           {
-            "name": "getAllSubs",
+            "name": "getAllSubscriptions",
             "description": null,
             "args": [],
             "type": {
@@ -212,11 +212,11 @@
             "deprecationReason": null
           },
           {
-            "name": "getOneUserSubs",
+            "name": "getOneUserSubscription",
             "description": null,
             "args": [
               {
-                "name": "user",
+                "name": "userID",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
@@ -239,7 +239,7 @@
             "deprecationReason": null
           },
           {
-            "name": "getMySubs",
+            "name": "getMySubcription",
             "description": null,
             "args": [],
             "type": {
@@ -250,33 +250,6 @@
                 "name": "Subscription",
                 "ofType": null
               }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "getOneSub",
-            "description": null,
-            "args": [
-              {
-                "name": "subs",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              }
-            ],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Subscription",
-              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
