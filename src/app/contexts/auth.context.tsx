@@ -55,11 +55,13 @@ const AuthProviderWrapper = (props: Props) => {
             logOutUser()
         } else {  // establece el current user a raiz del payload
             const decodedToken = jwt_decode(storedToken)
-            console.log(decodedToken)
+            console.log('SOY EL TOKEN DECODEADO----', decodedToken)
+
             // const user = "payload"
             // setIsLoggedIn(true)
             // setIsLoading(false)
             // setuser(user)
+
             // authService
             //     .verify(storedToken)
             //     .then(({ data }) => {
