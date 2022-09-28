@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useContext, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -10,12 +10,13 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { AuthContext } from '../../contexts/auth.context';
 // import { NavLink } from 'react-router-dom'
 
 const pages = ['SUSCRIPCIÓN', 'PEDIR A LA CARTA', 'CÓMO FUNCIONA'];
 
 const NavBar = () => {
-    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+    const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -25,6 +26,7 @@ const NavBar = () => {
         setAnchorElNav(null);
     };
 
+    const { logOutUser } = useContext(AuthContext)
 
     return (
         <AppBar position="static">
@@ -129,10 +131,14 @@ const NavBar = () => {
                         {/* <NavLink to="/">
                             <Button variant="text">Mi Cuenta</Button>
                         </NavLink> */}
-                        <Button variant="text" sx={{ my: 2, color: 'white'}} >Registro</Button>
-                        <Button variant="text" sx={{ my: 2, color: 'white'}}>Log In</Button>
+                        <Button variant="text" sx={{ my: 2, color: 'white' }} >Registro</Button>
+                        <Button variant="text" sx={{ my: 2, color: 'white' }}>Log In</Button>
                     </Box>
-
+                    <Button sx={{ my: 2, color: 'white' }} onClick={() => {
+                        console.log('que se cierre')
+                        logOutUser()
+                    }
+                    }>Cerrar sesión</Button>
                 </Toolbar>
             </Container>
         </AppBar>
