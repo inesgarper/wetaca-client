@@ -47,12 +47,15 @@ function AuthProviderWrapper(props: Props) {
         return localStorage.getItem('authToken')
     }
 
+    console.log('k pasa')
     const authenticateUser = () => {
+        console.log('estoy autenticandome')
         const storedToken = getToken()
 
         if (!storedToken) {
             logOutUser()
         } else {
+            console.log('hay token')
             removeToken()
             // authService
             //     .verify(storedToken)
