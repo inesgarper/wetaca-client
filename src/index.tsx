@@ -6,17 +6,20 @@ import App from './App';
 import './index.css';
 import { ApolloProvider } from '@apollo/client'
 import { client } from './app/graphql';
+import { AuthProviderWrapper } from './app/contexts/auth.context';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </ApolloProvider>
+    <AuthProviderWrapper>
+      <ApolloProvider client={client}>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </ApolloProvider>
+    </AuthProviderWrapper>
   </React.StrictMode>
 );
 
