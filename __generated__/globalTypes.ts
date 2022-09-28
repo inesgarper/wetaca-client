@@ -43,6 +43,15 @@ export enum SubscriptionStatus {
   PAUSED = "PAUSED",
 }
 
+export interface UserInput {
+  name?: string | null;
+  lastName?: string | null;
+  email?: string | null;
+  password?: string | null;
+  phoneNumber?: number | null;
+  birthDate?: any | null;
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================
