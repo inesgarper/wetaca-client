@@ -7,14 +7,6 @@
 // START Enums and Input Objects
 //==============================================================
 
-export enum DayOfTheWeek {
-  MONDAY = "MONDAY",
-  SATURDAY = "SATURDAY",
-  SUNDAY = "SUNDAY",
-  TUESDAY = "TUESDAY",
-  WEDNESDAY = "WEDNESDAY",
-}
-
 export enum MealCategory {
   CHICKEN = "CHICKEN",
   DESSERT = "DESSERT",
@@ -29,18 +21,6 @@ export enum MealCategory {
   RICE = "RICE",
   STARTER = "STARTER",
   VEGGIE = "VEGGIE",
-}
-
-export enum OrderStatus {
-  ACTIVED = "ACTIVED",
-  DELIVERED = "DELIVERED",
-  ORDERED = "ORDERED",
-}
-
-export enum SubscriptionStatus {
-  ACTIVED = "ACTIVED",
-  CANCELLED = "CANCELLED",
-  PAUSED = "PAUSED",
 }
 
 //==============================================================
