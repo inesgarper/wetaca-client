@@ -18,13 +18,23 @@ interface AuthContextInterface {
     logOutUser: () => void
 }
 
+interface DecodedToken {
+    name: string
+    lastName: string
+    email: string
+    role: string
+    _id: string
+    exp: number
+    iat: number
+}
+
 const AuthContext = createContext<AuthContextInterface>({
     isLoggedIn: false,
     isLoading: false,
     user: null,
-    storeToken: (token) => {},
-    authenticateUser: () => {},
-    logOutUser: () => {}
+    storeToken: (token) => { },
+    authenticateUser: () => { },
+    logOutUser: () => { }
 })
 
 interface Props {
@@ -35,7 +45,7 @@ const AuthProviderWrapper = (props: Props) => {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
-    const [user, setuser] = useState(null)
+    const [user, setuser] = useState<AuthContextInterface["user"] | null>(null)
 
     const storeToken = (token: string) => {
         localStorage.setItem('authToken', token)
@@ -54,23 +64,15 @@ const AuthProviderWrapper = (props: Props) => {
         if (!storedToken) {
             logOutUser()
         } else {  // establece el current user a raiz del payload
-            const decodedToken = jwt_decode(storedToken)
+            const decodedToken: DecodedToken = jwt_decode(storedToken)
             console.log('SOY EL TOKEN DECODEADO----', decodedToken)
+            const { name, lastName, email, role, _id } = decodedToken
+            const user = { name, lastName, email, role, _id }
 
-            // const user = "payload"
-            // setIsLoggedIn(true)
-            // setIsLoading(false)
-            // setuser(user)
+            setIsLoggedIn(true)
+            setIsLoading(false)
+            setuser(user)
 
-            // authService
-            //     .verify(storedToken)
-            //     .then(({ data }) => {
-            //         const user = data
-            //         setIsLoggedIn(true)
-            //         setIsLoading(false)
-            //         setuser(user)
-            //     })
-            //     .catch(() => logOutUser())
         }
     }
 
@@ -82,7 +84,7 @@ const AuthProviderWrapper = (props: Props) => {
     }
 
     useEffect(() => authenticateUser(), [])
-    
+
     return (
         <AuthContext.Provider value={{ isLoggedIn, isLoading, user, storeToken, authenticateUser, logOutUser }}>
             {props.children}

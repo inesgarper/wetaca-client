@@ -10,7 +10,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { AuthContext } from '../../context/auth.context';
+import { AuthContext } from '../../contexts/auth.context';
 // import { NavLink } from 'react-router-dom'
 
 const pages = ['SUSCRIPCIÓN', 'PEDIR A LA CARTA', 'CÓMO FUNCIONA'];
