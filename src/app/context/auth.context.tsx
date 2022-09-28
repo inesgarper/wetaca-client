@@ -16,7 +16,14 @@ interface AuthContextInterface {
     logOutUser: () => void
 }
 
-const AuthContext = createContext<AuthContextInterface | null>(null)
+const AuthContext = createContext<AuthContextInterface>({
+    isLoggedIn: false,
+    isLoading: false,
+    user: null,
+    storeToken: (token) => { },
+    authenticateUser: () => { },
+    logOutUser: () => { }
+})
 
 interface Props {
     children: JSX.Element
@@ -46,6 +53,7 @@ function AuthProviderWrapper(props: Props) {
         if (!storedToken) {
             logOutUser()
         } else {
+            removeToken()
             // authService
             //     .verify(storedToken)
             //     .then(({ data }) => {
