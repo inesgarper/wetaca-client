@@ -10,7 +10,7 @@ const SignUpForm = () => {
         email: '',
         password: '',
         phoneNumber: 0,
-        birthDate: new Date(),
+        birthDate: "14-10-1994",
     })
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,23 +25,28 @@ const SignUpForm = () => {
 
         e.preventDefault()
 
-        // authServices
-        //     .signUp()
-        //     .then((data) => {
-        //         const token = data?.value
-        //         token && storeToken(token)
-        //         authenticateUser()
-        //     })
-        //     .catch(err => console.log(err))
+        authServices
+            .signup(signUpForm)
+            .then(data => console.log(data))
+            .catch(err => console.log(err))
     }
 
 
     return (
         <form onSubmit={handleSubmit}>
             <label>Nombre</label>
-            <input type="email" name="email" value={loginForm.email} onChange={handleInputChange} />
+            <input type="text" name="name" value={signUpForm.name} onChange={handleInputChange} />
             <label>Apellido</label>
-            <input type="password" name="password" value={loginForm.password} onChange={handleInputChange} />
+            <input type="text" name="lastName" value={signUpForm.lastName} onChange={handleInputChange} />
+            <label>Email</label>
+            <input type="email" name="email" value={signUpForm.email} onChange={handleInputChange} />
+            <label>Contraseña</label>
+            <input type="password" name="password" value={signUpForm.password} onChange={handleInputChange} />
+            <label>Teléfono</label>
+            <input type="number" name="phoneNumber" value={signUpForm.phoneNumber} onChange={handleInputChange} />
+            <label>Fecha de Nacimiento</label>
+            <input type="date" name="birthDate" value={signUpForm.birthDate} onChange={handleInputChange} />
+
             <button type="submit">Iniciar sesión</button>
         </form>
     )

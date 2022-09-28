@@ -2,6 +2,7 @@ import { client } from "../../graphql"
 import { LOG_IN, SIGN_UP } from "./mutations/auth.mutations"
 import { logInMutation } from "./mutations/__generated__/logInMutation"
 import { signUpMutation } from "./mutations/__generated__/signUpMutation"
+import { UserInput } from "../../../../__generated__/globalTypes"
 
 class AuthService {
     async login(email: string, password: string): Promise<logInMutation["login"]> {
@@ -23,12 +24,11 @@ class AuthService {
         }
     }
 
-    async signup(name: string, lastName: string, email: string, password: string, phoneNumber: number, birthDate: Date)
-    : Promise<signUpMutation["createUser"]> {
+    async signup(userData: UserInput): Promise<signUpMutation["createUser"]> {
         try {
             const response = await client.mutate({
                 mutation: SIGN_UP,
-                variables: {name, lastName, email, password, phoneNumber, birthDate}
+                variables: {userData}
             })
 
             if (!response || !response.data) throw new Error("Cannot login!")

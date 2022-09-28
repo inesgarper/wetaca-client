@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import './App.css';
 import LogInForm from './app/components/NavBar/LogInForm';
 import NavBar from './app/components/NavBar/NavBar';
+import SignUpForm from './app/components/NavBar/SignUpForm';
 import { AuthContext } from './app/contexts/auth.context';
 
 
@@ -15,6 +16,7 @@ function App() {
       <NavBar />
       <h1>TENGO EL CONTROL</h1>
       <LogInForm/>
+      <SignUpForm/>
     </div>
   );
 }
