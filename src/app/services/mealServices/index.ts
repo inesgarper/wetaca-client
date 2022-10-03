@@ -6,6 +6,9 @@ import { getMealsByCategoryQuery } from "./queries/__generated__/getMealsByCateg
 import { getMenuQuery } from "./queries/__generated__/getMenuQuery";
 import { getNutritionalValuesQuery } from "./queries/__generated__/getNutritionalValuesQuery";
 import {getMealsToCookQuery} from "./queries/__generated__/getMealsToCookQuery"
+import { createMealMutation } from "./mutations/__generated__/createMealMutation";
+import { MealInput } from "../../../../__generated__/globalTypes"
+import { CREATE_MEAL } from "./mutations/meal.mutations";
 
 
 
@@ -98,7 +101,7 @@ class MealService {
         }
     }
 
-    async getMealsToCook(): Promise<getMealsToCookQuery["getMealsToCook"]>{
+    async getMealsToCook(): Promise<getMealsToCookQuery["getMealsToCook"]> {
        
         try {
 
@@ -111,6 +114,25 @@ class MealService {
             return response.data.getMealsToCook
 
         } catch (err) {
+            throw (err)
+        }
+    }
+
+    async createMeal(mealData: MealInput): Promise<createMealMutation["createMeal"]> {
+        try {
+            const response = await client.mutate({
+                mutation: CREATE_MEAL,
+                variables: {mealData}
+            })
+
+            if (!response || !response.data) throw new Error("Cannot create the meal!")
+
+            console.log("DATA: ", response.data)
+
+            return response.data.createMeal
+            
+        } catch (err){
+            console.log(err)
             throw (err)
         }
     }
