@@ -63,9 +63,8 @@ const AuthProviderWrapper = (props: Props) => {
         const storedToken = getToken()
         if (!storedToken) {
             logOutUser()
-        } else {  // establece el current user a raiz del payload
+        } else {  
             const decodedToken: DecodedToken = jwt_decode(storedToken)
-            console.log('SOY EL TOKEN DECODEADO----', decodedToken)
             const { name, lastName, email, role, _id } = decodedToken
             const user = { name, lastName, email, role, _id }
 

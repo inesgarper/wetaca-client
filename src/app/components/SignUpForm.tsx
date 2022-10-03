@@ -1,5 +1,5 @@
 import { useState } from "react"
-import authServices from "../../services/authServices"
+import authServices from "../services/authServices"
 
 const SignUpForm = () => {
 
@@ -9,7 +9,7 @@ const SignUpForm = () => {
         email: '',
         password: '',
         phoneNumber: '',
-        // birthDate: "1994-10-14",
+        birthDate: '',
     })
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,7 +44,7 @@ const SignUpForm = () => {
             <label>Teléfono</label>
             <input type="tel" name="phoneNumber" value={signUpForm.phoneNumber} onChange={handleInputChange} />
             <label>Fecha de Nacimiento</label>
-            {/* <input type="date" name="birthDate" value={signUpForm.birthDate} onChange={handleInputChange} /> */}
+            <input type="date" name="birthDate" value={signUpForm.birthDate} onChange={handleInputChange} />
 
             <button type="submit">Iniciar sesión</button>
         </form>

@@ -1,6 +1,6 @@
-import { useState, useEffect, useContext } from "react"
-import { AuthContext } from "../../contexts/auth.context"
-import authServices from "../../services/authServices"
+import { useState, useContext } from "react"
+import { AuthContext } from "../contexts/auth.context"
+import authServices from "../services/authServices"
 
 const LogInForm = () => {
 
@@ -31,18 +31,6 @@ const LogInForm = () => {
                 authenticateUser()
             })
             .catch(err => console.log(err))
-
-        // authService
-        //     .login(loginForm)
-        //     .then(({ data }) => {
-        //         storeToken(data.authToken)
-        //         authenticateUser()
-        //         setShowMessage(true)
-        //         setMessageInfo({ title: 'Éxito', desc: 'Sesión iniciada correctamente' })
-        //         navigate('/perfil')
-        //         closeModal()
-        //     })
-        //     .catch(err => console.log(err))
     }
 
 
