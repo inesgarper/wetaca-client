@@ -11,8 +11,8 @@ function App() {
     <div className="App">
       <NavBar />
       <AppRoutes />
-      <NewMealForm></NewMealForm>
-      <CreateMealForm />
+      <NewMealForm/>
+      {/* <CreateMealForm /> */}
     </div>
   );
 }
