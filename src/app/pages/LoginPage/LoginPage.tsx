@@ -1,4 +1,4 @@
-import LogInForm from "../../components/NavBar/LogInForm"
+import LogInForm from "../../components/LogInForm/LogInForm"
 
 
 const LoginPage = () => {

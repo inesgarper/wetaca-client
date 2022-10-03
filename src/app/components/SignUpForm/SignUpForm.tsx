@@ -36,7 +36,6 @@ const SignUpForm = () => {
         })
     }
 
-
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 
         e.preventDefault()
@@ -46,7 +45,6 @@ const SignUpForm = () => {
             .then(data => console.log(data))
             .catch(err => console.log(err))
     }
-
 
     return (
 
@@ -60,13 +58,7 @@ const SignUpForm = () => {
         >
 
             <div>
-                {/* <TextField required label="Nombre" type="text" name="name" value={signUpForm.name} onChange={handleInputChange} /> */}
-                {/* <TextField required label="Apellido" type="text" name="lastName" value={signUpForm.lastName} onChange={handleInputChange} /> */}
-                {/* <TextField required label="Email" type="email" name="email" value={signUpForm.email} onChange={handleInputChange} /> */}
-                {/* <TextField required label="Password" type="password" name="password" value={signUpForm.password} onChange={handleInputChange} /> */}
-                {/* <TextField required label="Teléfono" type="text" name="phoneNumber" value={signUpForm.phoneNumber} onChange={handleInputChange} />
-                <TextField required InputLabelProps={{ shrink: true }} label="Fecha de nacimiento" type="date" name="birthDate" value={signUpForm.birthDate} onChange={handleInputChange} /> */}
-
+                
                 <FormControl required sx={{ m: 1, width: '80ch' }} variant="outlined">
                     <InputLabel htmlFor="name">Nombre</InputLabel>
                     <OutlinedInput
