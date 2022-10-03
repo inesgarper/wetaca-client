@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { AuthContext } from '../../contexts/auth.context';
-// import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const pages = ['SUSCRIPCIÓN', 'PEDIR A LA CARTA', 'CÓMO FUNCIONA'];
 
@@ -35,22 +35,24 @@ const NavBar = () => {
                     {/* PC */}
                     {/* LOGO */}
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="a"
-                        href="/"
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'HELVETICA',
-                            fontWeight: 700,
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        wetaca
-                    </Typography>
+                    <NavLink to='/'>
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            component="a"
+                            href="/"
+                            sx={{
+                                mr: 2,
+                                display: { xs: 'none', md: 'flex' },
+                                fontFamily: 'HELVETICA',
+                                fontWeight: 700,
+                                color: 'white',
+                                textDecoration: 'none',
+                            }}
+                        >
+                            wetaca
+                        </Typography>
+                    </NavLink>
 
 
                     {/* MENU */}
@@ -95,23 +97,25 @@ const NavBar = () => {
                     {/* MOBILE */}
                     {/* LOGO */}
                     <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-                    <Typography
-                        variant="h5"
-                        noWrap
-                        component="a"
-                        href=""
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'flex', md: 'none' },
-                            flexGrow: 1,
-                            fontFamily: 'Exo 2',
-                            fontWeight: 700,
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        wetaca
-                    </Typography>
+                    <NavLink to='/'>
+                        <Typography
+                            variant="h5"
+                            noWrap
+                            component="a"
+                            href=""
+                            sx={{
+                                mr: 2,
+                                display: { xs: 'flex', md: 'none' },
+                                flexGrow: 1,
+                                fontFamily: 'Exo 2',
+                                fontWeight: 700,
+                                color: 'inherit',
+                                textDecoration: 'none',
+                            }}
+                        >
+                            wetaca
+                        </Typography>
+                    </NavLink>
 
                     {/* MENU */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -131,14 +135,16 @@ const NavBar = () => {
                         {/* <NavLink to="/">
                             <Button variant="text">Mi Cuenta</Button>
                         </NavLink> */}
-                        <Button variant="text" sx={{ my: 2, color: 'white' }} >Registro</Button>
-                        <Button variant="text" sx={{ my: 2, color: 'white' }}>Log In</Button>
+                        <NavLink to='/registro'>
+                            <Button variant="text" sx={{ my: 2, color: 'white' }}>Registro</Button>
+                        </NavLink>
+
+                        <NavLink to='/login'>
+                            <Button variant="text" sx={{ my: 2, color: 'white' }}>Log In</Button>
+                        </NavLink>
                     </Box>
-                    <Button sx={{ my: 2, color: 'white' }} onClick={() => {
-                        console.log('que se cierre')
-                        logOutUser()
-                    }
-                    }>Cerrar sesión</Button>
+
+                    <Button sx={{ my: 2, color: 'white' }} onClick={() => {logOutUser()}}>Cerrar sesión</Button>
                 </Toolbar>
             </Container>
         </AppBar>

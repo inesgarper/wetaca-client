@@ -2,7 +2,6 @@ import jwt_decode from 'jwt-decode';
 import { createContext, useState } from 'react'
 import { useEffect } from 'react';
 
-
 interface AuthContextInterface {
     isLoggedIn: boolean
     isLoading: boolean
