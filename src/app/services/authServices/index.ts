@@ -26,6 +26,7 @@ class AuthService {
 
     async signup(userData: UserInput): Promise<signUpMutation["createUser"]> {
         try {
+            console.log(userData)
             const response = await client.mutate({
                 mutation: SIGN_UP,
                 variables: {userData}

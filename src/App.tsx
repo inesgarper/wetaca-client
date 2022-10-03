@@ -4,12 +4,14 @@ import LogInForm from './app/components/NavBar/LogInForm';
 import NavBar from './app/components/NavBar/NavBar';
 import SignUpForm from './app/components/NavBar/SignUpForm';
 import { AuthContext } from './app/contexts/auth.context';
+import mealServices from './app/services/mealServices';
 
 
 function App() {
 
   console.log('ESTOY EN LA APP-----', useContext(AuthContext))
   console.log('LOCAL STORAGE---', localStorage)
+  
 
   return (
     <div className="App">

@@ -15,8 +15,7 @@ export interface signUpMutation_createUser {
   lastName: string;
   email: string;
   password: string;
-  phoneNumber: number;
-  birthDate: any;
+  phoneNumber: string;
 }
 
 export interface signUpMutation {

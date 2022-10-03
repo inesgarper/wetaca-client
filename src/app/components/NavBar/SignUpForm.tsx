@@ -1,5 +1,4 @@
-import { useState, useEffect, useContext } from "react"
-import { AuthContext } from "../../contexts/auth.context"
+import { useState } from "react"
 import authServices from "../../services/authServices"
 
 const SignUpForm = () => {
@@ -9,8 +8,8 @@ const SignUpForm = () => {
         lastName: '',
         email: '',
         password: '',
-        phoneNumber: 0,
-        birthDate: "14-10-1994",
+        phoneNumber: '',
+        // birthDate: "1994-10-14",
     })
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,9 +42,9 @@ const SignUpForm = () => {
             <label>Contraseña</label>
             <input type="password" name="password" value={signUpForm.password} onChange={handleInputChange} />
             <label>Teléfono</label>
-            <input type="number" name="phoneNumber" value={signUpForm.phoneNumber} onChange={handleInputChange} />
+            <input type="tel" name="phoneNumber" value={signUpForm.phoneNumber} onChange={handleInputChange} />
             <label>Fecha de Nacimiento</label>
-            <input type="date" name="birthDate" value={signUpForm.birthDate} onChange={handleInputChange} />
+            {/* <input type="date" name="birthDate" value={signUpForm.birthDate} onChange={handleInputChange} /> */}
 
             <button type="submit">Iniciar sesión</button>
         </form>

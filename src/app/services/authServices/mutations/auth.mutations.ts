@@ -16,7 +16,6 @@ export const SIGN_UP = gql`
             email
             password
             phoneNumber
-            birthDate
         }
     }
 `

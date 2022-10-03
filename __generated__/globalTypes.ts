@@ -48,7 +48,7 @@ export interface UserInput {
   lastName?: string | null;
   email?: string | null;
   password?: string | null;
-  phoneNumber?: number | null;
+  phoneNumber?: string | null;
   birthDate?: any | null;
 }
 

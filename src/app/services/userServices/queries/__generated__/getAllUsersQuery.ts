@@ -12,7 +12,7 @@ export interface getAllUsersQuery_getAllUsers {
   name: string;
   lastName: string;
   email: string;
-  phoneNumber: number;
+  phoneNumber: string;
 }
 
 export interface getAllUsersQuery {
