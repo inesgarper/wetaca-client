@@ -7,10 +7,16 @@
 // GraphQL query operation: getMenuQuery
 // ====================================================
 
+export interface getMenuQuery_getMenu_images {
+  __typename: "Images";
+  finals: (string | null)[] | null;
+}
+
 export interface getMenuQuery_getMenu {
   __typename: "Meal";
+  id: string;
   name: string;
-  currentlyInMenu: boolean | null;
+  images: getMenuQuery_getMenu_images | null;
 }
 
 export interface getMenuQuery {

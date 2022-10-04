@@ -9,6 +9,7 @@
 
 export interface getMealsToCookQuery_getMealsToCook_meal {
   __typename: "Meal";
+  id: string;
   name: string;
 }
 

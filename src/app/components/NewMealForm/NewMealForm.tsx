@@ -10,7 +10,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { Grid, MenuItem, TextField } from '@mui/material'
 import { allergensCheck, categoriesSelect, typesSelect } from './assets'
-import Stage0 from './Stage0'
+// import Stage0 from './Stage0'
 
 
 const NewMealForm = () => {

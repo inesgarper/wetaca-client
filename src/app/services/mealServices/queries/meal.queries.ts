@@ -40,8 +40,11 @@ export const GET_MEALS_BY_CATEGORY = gql`
 export const GET_MENU = gql`
     query getMenuQuery {
         getMenu {
+            id
             name
-            currentlyInMenu
+            images{
+                finals
+            }
         }
     }
 `
@@ -50,6 +53,7 @@ export const GET_MEALS_TO_COOK = gql`
     query getMealsToCookQuery {
         getMealsToCook {
             meal {
+                id
                 name
             }
             quantity
