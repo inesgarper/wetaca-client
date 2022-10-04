@@ -1,5 +1,8 @@
 import { client } from "../../graphql";
 import { GET_ALL_ORDERS, GET_MY_DELIVERED_ORDERS, GET_NEXT_WEEK_ORDERS, GET_ORDER_DETAILS } from "./queries/order.queries";
+import { ADD_MEAL_TO_ORDER, REMOVE_MEAL_FROM_ORDER } from "./mutations/order.mutations";
+import { addMealToOrderMutation } from "./mutations/__generated__/addMealToOrderMutation";
+import { removeMealFromOrderMutation } from "./mutations/__generated__/removeMealFromOrderMutation";
 import { getAllOrdersQuery } from "./queries/__generated__/getAllOrdersQuery";
 import { getMyDeliveredOrdersQuery } from "./queries/__generated__/getMyDeliveredOrdersQuery";
 import { getNextWeekOrdersQuery } from "./queries/__generated__/getNextWeekOrdersQuery";
@@ -69,6 +72,44 @@ class OrderService {
             return response.data.getMyDeliveredOrders
 
         } catch (err) {
+            throw (err)
+        }
+    }
+
+    async addMealToOrder(mealID: string): Promise<addMealToOrderMutation["addMealToOrder"]> {
+        try {
+            const response = await client.mutate({
+                mutation: ADD_MEAL_TO_ORDER,
+                variables: { mealID }
+            })
+
+            if (!response || !response.data) throw new Error("Cannot add meal to order!")
+
+            console.log("DATA: ", response.data)
+
+            return response.data.addMealToOrder
+
+        } catch (err) {
+            console.log(err)
+            throw (err)
+        }
+    }
+
+    async removeMealFromOrder(mealID: string): Promise<removeMealFromOrderMutation["removeMealFromOrder"]> {
+        try {
+            const response = await client.mutate({
+                mutation: REMOVE_MEAL_FROM_ORDER,
+                variables: { mealID }
+            })
+
+            if (!response || !response.data) throw new Error("Cannot remove meal from order!")
+
+            console.log("DATA: ", response.data)
+
+            return response.data.removeMealFromOrder
+
+        } catch (err) {
+            console.log(err)
             throw (err)
         }
     }
