@@ -1850,7 +1850,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -1898,7 +1898,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -2592,7 +2592,7 @@
             "description": null,
             "args": [
               {
-                "name": "subs",
+                "name": "subscriptionID",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
@@ -3334,7 +3334,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "AdressInput",
+              "name": "AddressInput",
               "ofType": null
             },
             "defaultValue": null
@@ -3356,7 +3356,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "AdressInput",
+        "name": "AddressInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -3382,7 +3382,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -3424,7 +3424,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "String",
                 "ofType": null
               }
             },
