@@ -12,8 +12,8 @@ import { SubscriptionStatus, DayOfTheWeek } from "./../../../../../../__generate
 export interface getMySubscriptionQuery_getMySubscription_address {
   __typename: "Address";
   city: string;
-  number: number;
-  postCode: number;
+  number: string;
+  postCode: string;
   province: string;
   street: string;
 }
