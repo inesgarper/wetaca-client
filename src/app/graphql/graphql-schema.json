@@ -2592,7 +2592,7 @@
             "description": null,
             "args": [
               {
-                "name": "subs",
+                "name": "subscriptionID",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",

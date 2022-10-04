@@ -52,6 +52,14 @@ export enum SubscriptionStatus {
   PAUSED = "PAUSED",
 }
 
+export interface AdressInput {
+  street: string;
+  number: number;
+  city: string;
+  province: string;
+  postCode: number;
+}
+
 export interface AllergensInput {
   celery?: boolean | null;
   gluten?: boolean | null;
@@ -96,6 +104,11 @@ export interface NutritionalValuesInput {
   sugar?: number | null;
   fiber?: number | null;
   sodium?: number | null;
+}
+
+export interface SubscriptionInput {
+  address?: AdressInput | null;
+  deliveryWeekDay?: DayOfTheWeek | null;
 }
 
 export interface UserInput {
