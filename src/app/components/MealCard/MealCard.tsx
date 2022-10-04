@@ -18,15 +18,12 @@ const MealCard = ({ meal }: Props) => {
 
     return (
         <>
-            {/* {
-                meal && <img src={meal?.images?.finals[0]}></img>
-            } */}
             <Card sx={{ maxWidth: 345 }}>
                 <CardMedia
                     component="img"
                     alt={meal?.name}
                     height="140"
-                    image={meal?.images?.finals?.[0]}
+                    image={meal?.images?.finals[0]}
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">

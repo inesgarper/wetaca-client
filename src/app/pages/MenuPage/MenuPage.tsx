@@ -1,6 +1,6 @@
 import MealsList from "../../components/MealsList/MealsList"
 
-const MealsPage = () => {
+const MenuPage = () => {
 
     return (
         <>
@@ -9,4 +9,4 @@ const MealsPage = () => {
     )
 }
 
-export default MealsPage
+export default MenuPage
