@@ -33,7 +33,7 @@ class SubscriptionService {
         try {
             const response = await client.query({
                 query: GET_ONE_USER_SUBSCRIPTION,
-                variables: {userID}
+                variables: { userID }
             })
 
             if (!response || !response.data) throw new Error("Cannot get subsctiption details!")
@@ -47,12 +47,12 @@ class SubscriptionService {
             throw (err)
         }
     }
-    
+
     async createSubscription(subscriptionData: SubscriptionInput): Promise<createSubscriptionMutation["createSubscription"]> {
         try {
             const response = await client.mutate({
                 mutation: CREATE_SUBSCRIPTION,
-                variables: {subscriptionData}
+                variables: { subscriptionData }
             })
 
             if (!response || !response.data) throw new Error("Cannot create the subscription!")
@@ -60,8 +60,8 @@ class SubscriptionService {
             console.log("DATA: ", response.data)
 
             return response.data.createSubscription
-            
-        } catch (err){
+
+        } catch (err) {
             console.log(err)
             throw (err)
         }
@@ -71,7 +71,7 @@ class SubscriptionService {
         try {
             const response = await client.mutate({
                 mutation: DELETE_SUBSCRIPTION,
-                variables: {subscriptionID}
+                variables: { subscriptionID }
             })
 
             if (!response || !response.data) throw new Error("Cannot delete the subscription!")
@@ -79,8 +79,8 @@ class SubscriptionService {
             console.log("DATA: ", response.data)
 
             return response.data.deleteSubscription
-            
-        } catch (err){
+
+        } catch (err) {
             console.log(err)
             throw (err)
         }
@@ -97,8 +97,8 @@ class SubscriptionService {
             console.log("DATA: ", response.data)
 
             return response.data.createBaseMenu
-            
-        } catch (err){
+
+        } catch (err) {
             console.log(err)
             throw (err)
         }

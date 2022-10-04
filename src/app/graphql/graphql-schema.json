@@ -239,7 +239,7 @@
             "deprecationReason": null
           },
           {
-            "name": "getMySubcription",
+            "name": "getMySubscription",
             "description": null,
             "args": [],
             "type": {
@@ -2592,7 +2592,7 @@
             "description": null,
             "args": [
               {
-                "name": "subscriptionID",
+                "name": "subs",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
