@@ -4,6 +4,7 @@ import LoginPage from "../pages/LoginPage/LoginPage"
 import MealsPage from "../pages/MenuPage/MenuPage"
 import NewMealPage from "../pages/NewMealPage/NewMealPage"
 import SignUpPage from "../pages/SignUpPage/SignUpPage"
+import NewSubscriptionPage from "../pages/NewSubscriptionPage/NewSubscriptionPage"
 
 
 const AppRoutes = () => {
@@ -15,6 +16,7 @@ const AppRoutes = () => {
 
             <Route path='/login' element={<LoginPage />} />
             <Route path='/registro' element={<SignUpPage />} />
+            <Route path='/crear-suscripcion' element={<NewSubscriptionPage/>}/>
 
             <Route path='/crear-plato' element={<NewMealPage />} />
             <Route path='/menu' element={<MealsPage />} />

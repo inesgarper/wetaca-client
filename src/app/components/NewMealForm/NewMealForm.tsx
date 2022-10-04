@@ -78,7 +78,6 @@ const NewMealForm = () => {
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
 
-        console.log('veamosss---->', e.target)
         setNewMealForm({
             ...newMealForm,
             [name]: value
@@ -143,7 +142,7 @@ const NewMealForm = () => {
                         <>
                             <h2>Datos de la receta</h2>
                             {/* <Stage0 setNewMealForm={setNewMealForm} handleInputChange={handleInputChange} /> */}
-                            {/* <FormControl required sx={{ m: 1, width: '80ch' }} variant="outlined">
+                            <FormControl required sx={{ m: 1, width: '80ch' }} variant="outlined">
                                 <InputLabel htmlFor="name">Nombre</InputLabel>
                                 <OutlinedInput
                                     id="name"
@@ -237,7 +236,7 @@ const NewMealForm = () => {
                                     onChange={handleInputChange}
                                     label="description"
                                 />
-                            </FormControl> */}
+                            </FormControl>
                         </>
                     }
 

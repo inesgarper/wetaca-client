@@ -9,15 +9,8 @@ import { SubscriptionInput, SubscriptionStatus } from "./../../../../../../__gen
 // GraphQL mutation operation: createSubscriptionMutation
 // ====================================================
 
-export interface createSubscriptionMutation_createSubscription_user {
-  __typename: "User";
-  name: string;
-  id: string;
-}
-
 export interface createSubscriptionMutation_createSubscription {
   __typename: "Subscription";
-  user: createSubscriptionMutation_createSubscription_user;
   status: SubscriptionStatus;
 }
 

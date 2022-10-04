@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import authServices from "../../services/authServices"
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -9,6 +9,8 @@ import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useNavigate } from "react-router-dom"
+import { AuthContext } from "../../contexts/auth.context"
 
 
 const SignUpForm = () => {
@@ -24,10 +26,13 @@ const SignUpForm = () => {
 
     const [showPassword, setShowPassword] = useState<Boolean>(false)
 
+    const navigate = useNavigate()
+    const { storeToken, authenticateUser } = useContext(AuthContext) || {}
+
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
     }
-    
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
         setSignUpForm({
@@ -42,7 +47,14 @@ const SignUpForm = () => {
 
         authServices
             .signup(signUpForm)
-            .then(data => console.log(data))
+            .catch(err => console.log(err))
+            .then(() => authServices.login(signUpForm.email, signUpForm.password))
+            .then((data) => {
+                const token = data?.value
+                token && storeToken(token)
+                authenticateUser()
+                navigate('/crear-suscripcion')
+            })
             .catch(err => console.log(err))
     }
 
@@ -58,7 +70,7 @@ const SignUpForm = () => {
         >
 
             <div>
-                
+
                 <FormControl required sx={{ m: 1, width: '80ch' }} variant="outlined">
                     <InputLabel htmlFor="name">Nombre</InputLabel>
                     <OutlinedInput

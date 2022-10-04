@@ -4,10 +4,6 @@ import { gql } from "@apollo/client";
 export const CREATE_SUBSCRIPTION = gql`
     mutation createSubscriptionMutation($subscriptionData: SubscriptionInput!) {
         createSubscription(subscriptionData: $subscriptionData) {
-            user {
-                name
-                id
-            }
             status
         }
     }
