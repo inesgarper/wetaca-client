@@ -14,8 +14,6 @@ interface Props {
 
 const MealCard = ({ meal }: Props) => {
 
-    console.log('el meal--Z', meal)
-
     return (
         <>
             <Card sx={{ maxWidth: 345 }}>
