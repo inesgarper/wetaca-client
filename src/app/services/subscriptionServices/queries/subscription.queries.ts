@@ -79,3 +79,19 @@ export const GET_ONE_USER_SUBSCRIPTION = gql`
         }
     }
 `
+
+export const GET_MY_SUBSCRIPTION = gql`
+    query getMySubscriptionQuery{
+        getMySubscription {
+            address {
+                city
+                number
+                postCode
+                province
+                street
+            }
+            status
+            deliveryWeekDay
+        }
+    }
+`

@@ -1,11 +1,10 @@
 import { client } from "../../graphql";
-import { GET_MY_SUBSCRIPTION } from "../orderServices/queries/order.queries";
-import { getMySubscriptionQuery } from "../orderServices/queries/__generated__/getMySubscriptionQuery";
 import { UPDATE_DELIVERY_WEEK_DAY, UPDATE_SUBSCRIPTION_STATUS } from "./mutations/subscription.mutations";
 import { updateDeliveryWeekDayMutation } from "./mutations/__generated__/updateDeliveryWeekDayMutation";
 import { updateSubscriptionStatusMutation } from "./mutations/__generated__/updateSubscriptionStatusMutation";
-import { GET_ALL_SUBSCRIPTIONS, GET_ONE_USER_SUBSCRIPTION } from "./queries/subscription.queries";
+import { GET_ALL_SUBSCRIPTIONS, GET_MY_SUBSCRIPTION, GET_ONE_USER_SUBSCRIPTION } from "./queries/subscription.queries";
 import { getAllSubscriptionsQuery } from "./queries/__generated__/getAllSubscriptionsQuery";
+import { getMySubscriptionQuery } from "./queries/__generated__/getMySubscriptionQuery";
 import { getOneUserSubscriptionQuery } from "./queries/__generated__/getOneUserSubscriptionQuery";
 
 

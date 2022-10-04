@@ -66,19 +66,3 @@ export const GET_MY_DELIVERED_ORDERS = gql`
         }
     }
 `
-
-export const GET_MY_SUBSCRIPTION = gql`
-    query getMySubscriptionQuery{
-        getMySubscription {
-            address {
-                city
-                number
-                postCode
-                province
-                street
-            }
-            status
-            deliveryWeekDay
-        }
-    }
-`
