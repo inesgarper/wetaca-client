@@ -12,8 +12,8 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { AuthContext } from '../../contexts/auth.context';
 import { NavLink } from 'react-router-dom'
+import { pages } from './assets';
 
-const pages = ['SUSCRIPCIÓN', 'PEDIR A LA CARTA', 'CÓMO FUNCIONA'];
 
 const NavBar = () => {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -86,9 +86,11 @@ const NavBar = () => {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
+                                <NavLink to={page.nav}>
+                                    <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                                        <Typography textAlign="center">{page.name}</Typography>
+                                    </MenuItem>
+                                </NavLink>
                             ))}
                         </Menu>
                     </Box>
@@ -120,13 +122,15 @@ const NavBar = () => {
                     {/* MENU */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
-                            <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                {page}
-                            </Button>
+                            <NavLink to={page.nav}>
+                                <Button
+                                    key={page.name}
+                                    onClick={handleCloseNavMenu}
+                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                >
+                                    {page.name}
+                                </Button>
+                            </NavLink>
                         ))}
                     </Box>
 
@@ -144,10 +148,10 @@ const NavBar = () => {
                         </NavLink>
                     </Box>
 
-                    <Button sx={{ my: 2, color: 'white' }} onClick={() => {logOutUser()}}>Cerrar sesión</Button>
+                    <Button sx={{ my: 2, color: 'white' }} onClick={() => { logOutUser() }}>Cerrar sesión</Button>
                 </Toolbar>
             </Container>
-        </AppBar>
+        </AppBar >
     );
 };
 
