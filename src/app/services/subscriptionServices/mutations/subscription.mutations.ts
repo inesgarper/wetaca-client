@@ -1,12 +1,5 @@
 import { gql } from "@apollo/client";
 
-export const UPDATE_SUBSCRIPTION_STATUS = gql`
-    mutation updateSubscriptionStatusMutation($status: String!){
-        updateSubscriptionStatus(status: $status) {
-            status
-        }
-    }
-`
 
 export const CREATE_SUBSCRIPTION = gql`
     mutation createSubscriptionMutation($subscriptionData: SubscriptionInput!) {
@@ -15,6 +8,14 @@ export const CREATE_SUBSCRIPTION = gql`
                 name
                 id
             }
+            status
+        }
+    }
+`
+
+export const UPDATE_SUBSCRIPTION_STATUS = gql`
+    mutation updateSubscriptionStatusMutation($status: String!){
+        updateSubscriptionStatus(status: $status) {
             status
         }
     }
