@@ -21,7 +21,7 @@ const MealCard = ({ meal }: Props) => {
                     component="img"
                     alt={meal?.name}
                     height="140"
-                    image={meal?.images?.finals[0]}
+                // image={meal?.images?.finals[0]}
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
