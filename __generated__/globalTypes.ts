@@ -52,12 +52,12 @@ export enum SubscriptionStatus {
   PAUSED = "PAUSED",
 }
 
-export interface AdressInput {
+export interface AddressInput {
   street: string;
-  number: number;
+  number: string;
   city: string;
   province: string;
-  postCode: number;
+  postCode: string;
 }
 
 export interface AllergensInput {
@@ -107,7 +107,7 @@ export interface NutritionalValuesInput {
 }
 
 export interface SubscriptionInput {
-  address?: AdressInput | null;
+  address?: AddressInput | null;
   deliveryWeekDay?: DayOfTheWeek | null;
 }
 

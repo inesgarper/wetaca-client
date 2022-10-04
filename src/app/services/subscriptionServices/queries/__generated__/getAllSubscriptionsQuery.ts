@@ -46,10 +46,10 @@ export interface getAllSubscriptionsQuery_getAllSubscriptions_baseMenu {
 export interface getAllSubscriptionsQuery_getAllSubscriptions_address {
   __typename: "Address";
   street: string;
-  number: number;
+  number: string;
   city: string;
   province: string;
-  postCode: number;
+  postCode: string;
 }
 
 export interface getAllSubscriptionsQuery_getAllSubscriptions {

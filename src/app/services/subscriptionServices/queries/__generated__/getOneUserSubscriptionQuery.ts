@@ -46,10 +46,10 @@ export interface getOneUserSubscriptionQuery_getOneUserSubscription_baseMenu {
 export interface getOneUserSubscriptionQuery_getOneUserSubscription_address {
   __typename: "Address";
   street: string;
-  number: number;
+  number: string;
   city: string;
   province: string;
-  postCode: number;
+  postCode: string;
 }
 
 export interface getOneUserSubscriptionQuery_getOneUserSubscription {
