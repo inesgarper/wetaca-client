@@ -1,5 +1,5 @@
 import { client } from "../../graphql";
-import { GET_ALL_ORDERS, GET_MY_DELIVERED_ORDERS, GET_NEXT_WEEK_ORDERS, GET_ORDER_DETAILS } from "./queries/order.queries";
+import { GET_ALL_ORDERS, GET_MY_ACTIVE_ORDER, GET_MY_DELIVERED_ORDERS, GET_MY_NEXT_ORDER, GET_NEXT_WEEK_ORDERS, GET_ORDER_DETAILS } from "./queries/order.queries";
 import { ADD_MEAL_TO_ORDER, REMOVE_MEAL_FROM_ORDER } from "./mutations/order.mutations";
 import { addMealToOrderMutation } from "./mutations/__generated__/addMealToOrderMutation";
 import { removeMealFromOrderMutation } from "./mutations/__generated__/removeMealFromOrderMutation";
@@ -7,6 +7,8 @@ import { getAllOrdersQuery } from "./queries/__generated__/getAllOrdersQuery";
 import { getMyDeliveredOrdersQuery } from "./queries/__generated__/getMyDeliveredOrdersQuery";
 import { getNextWeekOrdersQuery } from "./queries/__generated__/getNextWeekOrdersQuery";
 import { getOrderDetailsQuery } from "./queries/__generated__/getOrderDetailsQuery";
+import { getMyActiveOrderQuery } from "./queries/__generated__/getMyActiveOrderQuery";
+import { getMyNextOrderQuery } from "./queries/__generated__/getMyNextOrderQuery";
 
 class OrderService {
     async getAllOrders(): Promise<getAllOrdersQuery["getAllOrders"]> {
@@ -55,6 +57,36 @@ class OrderService {
             if (!response || !response.data) throw new Error("Cannot get orders list!")
 
             return response.data.getNextOrders
+
+        } catch (err) {
+            console.log(err)
+            throw (err)
+        }
+    }
+
+    async getMyActiveOrder(): Promise<getMyActiveOrderQuery["getMyActiveOrder"]> {
+        try {
+            const response = await client.query({
+                query: GET_MY_ACTIVE_ORDER
+            })
+
+            if (!response || !response.data) throw new Error("Cannot get active order")
+            return response.data.getMyActiveOrder
+
+        } catch (err) {
+            console.log(err)
+            throw (err)
+        }
+    }
+    
+    async getMyNextOrder(): Promise<getMyNextOrderQuery["getMyNextOrder"]> {
+        try {
+            const response = await client.query({
+                query: GET_MY_NEXT_ORDER
+            })
+
+            if (!response || !response.data) throw new Error("Cannot get next order")
+            return response.data.getMyNextOrder
 
         } catch (err) {
             console.log(err)

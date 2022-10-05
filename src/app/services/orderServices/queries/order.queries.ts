@@ -53,6 +53,42 @@ export const GET_NEXT_WEEK_ORDERS = gql`
     }
 `
 
+export const GET_MY_ACTIVE_ORDER = gql`
+    query getMyActiveOrderQuery{
+        getMyActiveOrder {
+            price
+            meals {
+                mealID {
+                    name
+                    price
+                    images {
+                        finals
+                    }
+                }
+                quantity
+            }
+        }
+    }
+`
+
+export const GET_MY_NEXT_ORDER = gql`
+    query getMyNextOrderQuery{
+        getMyNextOrder {
+            price
+            meals {
+                mealID {
+                    name
+                    price
+                    images {
+                        finals
+                    }
+                }
+                quantity
+            }
+        }
+    }
+`
+
 export const GET_MY_DELIVERED_ORDERS = gql`
     query getMyDeliveredOrdersQuery{
         getMyDeliveredOrders {
