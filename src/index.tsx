@@ -11,6 +11,7 @@ import { store } from './app/store';
 import { ApolloProvider } from '@apollo/client'
 import { client } from './app/graphql';
 import { AuthProviderWrapper } from './app/contexts/auth.context';
+import { CartProviderWrapper } from './app/contexts/cart.context';
 
 
 const root = document.getElementById('root')!;
@@ -22,7 +23,9 @@ ReactDOM.render(
       <ApolloProvider client={client}>
         <Provider store={store}>
           <AuthProviderWrapper>
+          <CartProviderWrapper>
             <App />
+          </CartProviderWrapper>
           </AuthProviderWrapper>
         </Provider>
       </ApolloProvider>

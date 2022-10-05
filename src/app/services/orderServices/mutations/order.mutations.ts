@@ -12,10 +12,17 @@ export const CREATE_ORDER = gql`
 export const ADD_MEAL_TO_ORDER = gql`
     mutation addMealToOrderMutation($mealID: ID) {
         addMealToOrder(mealID: $mealID) {
-            mealID {
-                name
+            price
+            meals {
+                mealID {
+                    name
+                    price
+                    images {
+                        finals
+                    }
+                }
+                quantity
             }
-            quantity
         }
     }
 `
@@ -23,10 +30,17 @@ export const ADD_MEAL_TO_ORDER = gql`
 export const REMOVE_MEAL_FROM_ORDER = gql`
     mutation removeMealFromOrderMutation($mealID: ID) {
         removeMealFromOrder(mealID: $mealID) {
-            mealID {
-                name
+            price
+            meals {
+                mealID {
+                    name
+                    price
+                    images {
+                        finals
+                    }
+                }
+                quantity
             }
-            quantity
         }
     }
 `

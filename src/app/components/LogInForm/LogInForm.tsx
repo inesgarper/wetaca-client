@@ -11,10 +11,12 @@ import IconButton from '@mui/material/IconButton'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from "react-router-dom"
+import { CartContext } from "../../contexts/cart.context"
 
 const LogInForm = () => {
 
     const { storeToken, authenticateUser } = useContext(AuthContext) || {}
+    const { getCart } = useContext(CartContext) || {}
 
     const [loginForm, setLoginForm] = useState({
         password: '',
@@ -47,6 +49,7 @@ const LogInForm = () => {
                 const token = data?.value
                 token && storeToken(token)
                 authenticateUser()
+                getCart()
                 navigate('/')
             })
             .catch(err => console.log(err))

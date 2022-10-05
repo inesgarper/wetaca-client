@@ -5,7 +5,9 @@ import CardMedia from '@mui/material/CardMedia'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import { getMenuQuery_getMenu } from '../../services/mealServices/queries/__generated__/getMenuQuery'
-
+import { useContext, useEffect, useState } from 'react'
+import { CartContext } from '../../contexts/cart.context'
+import { AuthContext } from '../../contexts/auth.context'
 
 interface Props {
     meal: getMenuQuery_getMenu | null
@@ -13,6 +15,11 @@ interface Props {
 
 
 const MealCard = ({ meal }: Props) => {
+
+    const { order, addMeal, removeMeal } = useContext(CartContext) || {}
+    const { isLoggedIn } = useContext(AuthContext) || {}
+
+    const mealIsInOrder = order?.meals?.find(thisMeal => thisMeal?.mealID?.name === meal?.name)    
 
     return (
         <>
@@ -28,9 +35,19 @@ const MealCard = ({ meal }: Props) => {
                         {meal?.name}
                     </Typography>
                 </CardContent>
-                <CardActions>
-                    <Button size="small">Añadir</Button>
-                </CardActions>
+
+                {isLoggedIn && <>
+                {!mealIsInOrder && <CardActions>
+                   {meal && <Button size="small" onClick={() => addMeal(meal?.id)}>Añadir</Button>}
+                </CardActions>}
+                {mealIsInOrder && <CardActions>
+                    {meal && <Button size="small" onClick={() => removeMeal(meal?.id)}>-</Button>}
+                    {<h3>{mealIsInOrder?.quantity}</h3>}
+                    {meal && <Button size="small" onClick={() => addMeal(meal?.id)}>+</Button>}
+                </CardActions>}
+                </>}
+
+                
             </Card>
         </>
     );

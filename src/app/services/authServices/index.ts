@@ -12,10 +12,7 @@ class AuthService {
                 variables: {email, password},
             })
 
-            if (!response || !response.data) throw new Error("Cannot login!")
-
-            console.log("DATA: ", response.data)
-            console.log(client)
+            if (!response || !response.data) throw new Error("Cannot log in!")
 
             return response.data.login
 
@@ -33,9 +30,7 @@ class AuthService {
                 variables: {userData}
             })
 
-            if (!response || !response.data) throw new Error("Cannot login!")
-
-            console.log("DATA: ", response.data)
+            if (!response || !response.data) throw new Error("Cannot sign up!")
 
             return response.data.signup
         } catch (err) {
