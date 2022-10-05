@@ -116,13 +116,6 @@ export interface NutritionalValuesInput {
   sodium?: number | null;
 }
 
-export interface PaymentMethodsInput {
-  cardNumber?: string | null;
-  cardName?: string | null;
-  securityCode?: number | null;
-  expiration?: any | null;
-}
-
 export interface SubscriptionInput {
   address?: AddressInput | null;
   deliveryWeekDay?: DayOfTheWeek | null;
