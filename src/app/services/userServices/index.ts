@@ -1,6 +1,9 @@
 import { client } from "../../graphql"
 import { GET_ALL_USERS } from "./queries/user.queries"
 import { getAllUsersQuery } from "./queries/__generated__/getAllUsersQuery"
+import { PaymentMethodsInput } from "./../../../../__generated__/globalTypes"
+import { addPaymentMethodMutation } from "./mutations/__generated__/addPaymentMethodMutation"
+import { ADD_PAYMENT_METHOD } from "./mutations/user.mutations"
 
 class UserService {
     async getAllUsers(): Promise<getAllUsersQuery["getAllUsers"]> {
@@ -16,6 +19,25 @@ class UserService {
             return response.data.getAllUsers
 
         } catch (err) {
+            console.log(err)
+            throw (err)
+        }
+    }
+
+    async addPaymentMethod(paymentMethodData: PaymentMethodsInput): Promise<addPaymentMethodMutation["addPaymentMethod"]> {
+        try {
+            const response = await client.mutate({
+                mutation: ADD_PAYMENT_METHOD,
+                variables: {paymentMethodData}
+            })
+
+            if (!response || !response.data) throw new Error("Cannot add the payment method!")
+
+            console.log("DATA: ", response.data)
+
+            return response.data.addPaymentMethod
+            
+        } catch (err){
             console.log(err)
             throw (err)
         }
