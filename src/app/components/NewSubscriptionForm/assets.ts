@@ -1,1 +1,1 @@
-export const weekDaysSelect = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY']
+export const weekDaysSelect = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'SATURDAY', 'SUNDAY']

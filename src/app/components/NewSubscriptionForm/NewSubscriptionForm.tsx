@@ -1,6 +1,6 @@
 import { Box, Button, FormControl, InputLabel, MenuItem, OutlinedInput, TextField } from "@mui/material"
-import { useEffect, useState } from "react"
-import { DayOfTheWeek } from "../../../../__generated__/globalTypes"
+import { useState } from "react"
+import orderServices from "../../services/orderServices"
 import subscriptionServices from "../../services/subscriptionServices"
 import { weekDaysSelect } from "./assets"
 
@@ -50,6 +50,9 @@ const NewSubscriptionForm = ({ setSubscriptionStage }: Props) => {
 
         subscriptionServices
             .createSubscription(newSubscriptionData)
+            .catch(err => console.log('No se ha podido crear la suscripción'))
+            .then(() => orderServices.createOrder())
+            .catch(err => console.log('No se ha podido crear la order'))
             .then(() => setSubscriptionStage((currentStage) => currentStage + 1))
             .catch(err => console.log(err))
 

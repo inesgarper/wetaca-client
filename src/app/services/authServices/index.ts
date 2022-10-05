@@ -9,12 +9,13 @@ class AuthService {
         try {
             const response = await client.mutate({
                 mutation: LOG_IN,
-                variables: {email, password}
+                variables: {email, password},
             })
 
             if (!response || !response.data) throw new Error("Cannot login!")
 
             console.log("DATA: ", response.data)
+            console.log(client)
 
             return response.data.login
 
