@@ -52,6 +52,11 @@ export enum SubscriptionStatus {
   PAUSED = "PAUSED",
 }
 
+export enum TimeSlot {
+  EVENING = "EVENING",
+  MORNING = "MORNING",
+}
+
 export interface AddressInput {
   street: string;
   number: string;
@@ -75,6 +80,11 @@ export interface AllergensInput {
   soybeans?: boolean | null;
   sulphurDioxide?: boolean | null;
   sulphites?: boolean | null;
+}
+
+export interface DeliveryDateInput {
+  day?: any | null;
+  hour?: TimeSlot | null;
 }
 
 export interface ImagesInput {

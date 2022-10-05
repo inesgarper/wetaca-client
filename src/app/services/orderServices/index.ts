@@ -1,12 +1,16 @@
 import { client } from "../../graphql";
 import { GET_ALL_ORDERS, GET_MY_DELIVERED_ORDERS, GET_NEXT_WEEK_ORDERS, GET_ORDER_DETAILS } from "./queries/order.queries";
-import { ADD_MEAL_TO_ORDER, REMOVE_MEAL_FROM_ORDER } from "./mutations/order.mutations";
+import { ADD_MEAL_TO_ORDER, CONFIRM_ORDER, CREATE_ORDER, REMOVE_MEAL_FROM_ORDER, UPDATE_DELIVERY_DATE } from "./mutations/order.mutations";
 import { addMealToOrderMutation } from "./mutations/__generated__/addMealToOrderMutation";
 import { removeMealFromOrderMutation } from "./mutations/__generated__/removeMealFromOrderMutation";
 import { getAllOrdersQuery } from "./queries/__generated__/getAllOrdersQuery";
 import { getMyDeliveredOrdersQuery } from "./queries/__generated__/getMyDeliveredOrdersQuery";
 import { getNextWeekOrdersQuery } from "./queries/__generated__/getNextWeekOrdersQuery";
 import { getOrderDetailsQuery } from "./queries/__generated__/getOrderDetailsQuery";
+import { createOrderMutation } from "./mutations/__generated__/createOrderMutation";
+import { updateDeliveryDateMutation } from "./mutations/__generated__/updateDeliveryDateMutation";
+import { DeliveryDateInput } from "../../../../__generated__/globalTypes"
+import { confirmOrderMutation } from "./mutations/__generated__/confirmOrderMutation";
 
 class OrderService {
     async getAllOrders(): Promise<getAllOrdersQuery["getAllOrders"]> {
@@ -110,6 +114,52 @@ class OrderService {
 
         } catch (err) {
             console.log(err)
+            throw (err)
+        }
+    }
+
+    async createOrder(): Promise<createOrderMutation["createOrder"]> {
+        try {
+            const response = await client.mutate({
+                mutation: CREATE_ORDER,
+            })
+
+            if (!response || !response.data) throw new Error("Cannot create order!")
+
+            return response.data.createOrder
+
+        } catch (err) {
+            throw (err)
+        }
+    }
+
+    async updateDeliveryDate(deliveryDate: DeliveryDateInput): Promise<updateDeliveryDateMutation["updateDeliveryDate"]> {
+        try {
+            const response = await client.mutate({
+                mutation: UPDATE_DELIVERY_DATE,
+                variables: { deliveryDate }
+            })
+
+            if (!response || !response.data) throw new Error("Cannot update delivery date!")
+
+            return response.data.updateDeliveryDate
+
+        } catch (err) {
+            throw (err)
+        }
+    }
+
+    async confirmOrder(): Promise<confirmOrderMutation["confirmOrder"]> {
+        try {
+            const response = await client.mutate({
+                mutation: CONFIRM_ORDER
+            })
+
+            if (!response || !response.data) throw new Error("Cannot confirm order!")
+
+            return response.data.confirmOrder
+
+        } catch (err) {
             throw (err)
         }
     }
