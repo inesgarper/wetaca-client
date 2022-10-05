@@ -1,5 +1,7 @@
 import { Box, Button, FormControl, InputLabel, OutlinedInput } from "@mui/material"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import userServices from "../../services/userServices"
 
 interface Props {
     setSubscriptionStage: React.Dispatch<React.SetStateAction<number>>
@@ -13,6 +15,8 @@ const NewPaymentMethodForm = ({ setSubscriptionStage }: Props) => {
         securityCode: 0,
         expiration: undefined
     })
+
+    const navigate = useNavigate()
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let data = { ...newPaymentMethodData }
@@ -33,7 +37,15 @@ const NewPaymentMethodForm = ({ setSubscriptionStage }: Props) => {
         setNewPaymentMethodData(data)
     }
 
-    const handleSubmit = () => { }
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+
+        e.preventDefault()
+
+        userServices
+            .addPaymentMethod(newPaymentMethodData)
+            .then(() => navigate('/'))
+            .catch(err => console.log(err))
+    }
 
     return (
         <>
@@ -73,7 +85,7 @@ const NewPaymentMethodForm = ({ setSubscriptionStage }: Props) => {
                     </FormControl>
 
                     <FormControl required sx={{ m: 1, width: '80ch' }} variant="outlined">
-                        <InputLabel htmlFor="securityCode">Nº de la tarjeta</InputLabel>
+                        <InputLabel htmlFor="securityCode">CVC</InputLabel>
                         <OutlinedInput
                             id="securityCode"
                             type="number"
