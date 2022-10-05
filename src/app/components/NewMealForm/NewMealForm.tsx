@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import mealServices from '../../services/mealServices'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -17,35 +17,7 @@ const NewMealForm = () => {
 
     const [formStage, setFormStage] = useState(0)
 
-    const [allergens, setAllergens] = useState({
-        celery: false,
-        gluten: false,
-        crustaceans: false,
-        eggs: false,
-        fish: false,
-        lupin: false,
-        milk: false,
-        molluscs: false,
-        mustard: false,
-        peanuts: false,
-        sesame: false,
-        soybeans: false,
-        sulphurDioxide: false,
-        sulphites: false
-    })
-
-    const [nutritionalValues, setNutritionalValues] = useState({
-        calories: 0,
-        totalFats: 0,
-        saturatedFat: 0,
-        carbs: 0,
-        protein: 0,
-        sugar: 0,
-        fiber: 0,
-        sodium: 0
-    })
-
-    const [newMealForm, setNewMealForm] = useState({
+    const [newMealData, setNewMealData] = useState({
         name: '',
         type: undefined,
         ingredients: '',
@@ -53,71 +25,83 @@ const NewMealForm = () => {
         weight: 0,
         price: 0,
         description: '',
-        allergens: allergens,
-        nutritionalValues: nutritionalValues
+        allergens: {
+            celery: false,
+            gluten: false,
+            crustaceans: false,
+            eggs: false,
+            fish: false,
+            lupin: false,
+            milk: false,
+            molluscs: false,
+            mustard: false,
+            peanuts: false,
+            sesame: false,
+            soybeans: false,
+            sulphurDioxide: false,
+            sulphites: false
+        },
+        nutritionalValues: {
+            calories: 0,
+            totalFats: 0,
+            saturatedFat: 0,
+            carbs: 0,
+            protein: 0,
+            sugar: 0,
+            fiber: 0,
+            sodium: 0
+        }
     })
-
-    useEffect(() => {
-        setNewMealForm({
-            ...newMealForm,
-            allergens: allergens
-        })
-    }, [allergens])
-
-    useEffect(() => {
-        setNewMealForm({
-            ...newMealForm,
-            nutritionalValues: nutritionalValues
-        })
-    }, [nutritionalValues])
 
     const setNextStage = (number: number): void => {
         setFormStage((currentStage) => currentStage + number)
     }
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target
+        let data = { ...newMealData }
+        const { name, value, checked } = e.target
 
-        setNewMealForm({
-            ...newMealForm,
-            [name]: value
-        })
-    }
 
-    const handleInputChangeValueNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target
-
-        if (name === 'weight' || name === 'price') {
-
-            setNewMealForm({
-                ...newMealForm,
+        if (name === 'celery' || name === 'gluten' || name === 'crustaceans' || name === 'eggs' || name === 'fish'
+            || name === 'lupin' || name === 'milk' || name === 'molluscs' || name === 'mustard' || name === 'peanuts'
+            || name === 'sesame' || name === 'soybeans' || name === 'sulphurDioxide' || name === 'sulphites') {
+            data = {
+                ...data,
+                allergens: {
+                    ...data.allergens,
+                    [name]: checked
+                }
+            }
+        } else if (name === 'calories' || name === 'totalFats' || name === 'saturatedFat' || name === 'carbs'
+            || name === 'protein' || name === 'sugar' || name === 'fiber' || name === 'sodium') {
+            data = {
+                ...data,
+                nutritionalValues: {
+                    ...data.nutritionalValues,
+                    [name]: Number(value)
+                }
+            }
+        } else if (name === 'weight' || name === 'price') {
+            data = {
+                ...data,
                 [name]: Number(value)
-            })
-
+            }
         } else {
-
-            setNutritionalValues({
-                ...nutritionalValues,
-                [name]: Number(value)
-            })
+            data = {
+                ...data,
+                [name]: value
+            }
         }
+
+        setNewMealData(data)
     }
 
-    const handleCheckedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, checked } = e.target
-
-        setAllergens({
-            ...allergens,
-            [name]: checked
-        })
-    }
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 
         e.preventDefault()
-        console.log('lo que le pasamos---->', newMealForm)
         mealServices
-            .createMeal(newMealForm)
+            .createMeal(newMealData)
             .then(data => console.log(data))
             .catch(err => console.log(err))
     }
@@ -148,7 +132,7 @@ const NewMealForm = () => {
                                     id="name"
                                     type="text"
                                     name="name"
-                                    value={newMealForm.name}
+                                    value={newMealData.name}
                                     onChange={handleInputChange}
                                     label="name"
                                 />
@@ -159,7 +143,7 @@ const NewMealForm = () => {
                                 select
                                 label="Tipo"
                                 name="type"
-                                value={newMealForm.type}
+                                value={newMealData.type}
                                 onChange={handleInputChange}
                                 helperText="Please select a meal type"
                             >
@@ -178,7 +162,7 @@ const NewMealForm = () => {
                                     id="ingredients"
                                     type="text"
                                     name="ingredients"
-                                    value={newMealForm.ingredients}
+                                    value={newMealData.ingredients}
                                     onChange={handleInputChange}
                                     label="ingredients"
                                 />
@@ -189,7 +173,7 @@ const NewMealForm = () => {
                                 select
                                 label="Categoría"
                                 name="category"
-                                value={newMealForm.category}
+                                value={newMealData.category}
                                 onChange={handleInputChange}
                                 helperText="Please select a meal category"
                             >
@@ -206,8 +190,8 @@ const NewMealForm = () => {
                                     id="weight"
                                     type="number"
                                     name="weight"
-                                    value={newMealForm.weight}
-                                    onChange={handleInputChangeValueNumber}
+                                    value={newMealData.weight}
+                                    onChange={handleInputChange}
                                     label="weight"
                                 />
                             </FormControl>
@@ -218,8 +202,8 @@ const NewMealForm = () => {
                                     id="price"
                                     type="number"
                                     name="price"
-                                    value={newMealForm.price}
-                                    onChange={handleInputChangeValueNumber}
+                                    value={newMealData.price}
+                                    onChange={handleInputChange}
                                     label="price"
                                 />
                             </FormControl>
@@ -232,7 +216,7 @@ const NewMealForm = () => {
                                     id="description"
                                     type="text"
                                     name="description"
-                                    value={newMealForm.description}
+                                    value={newMealData.description}
                                     onChange={handleInputChange}
                                     label="description"
                                 />
@@ -252,7 +236,7 @@ const NewMealForm = () => {
                                         return (
                                             <Grid xs={6}>
                                                 <FormGroup>
-                                                    <FormControlLabel control={<Checkbox name={allergen.value} onChange={handleCheckedChange} />} label={allergen.label} />
+                                                    <FormControlLabel control={<Checkbox name={allergen.value} onChange={handleInputChange} />} label={allergen.label} />
                                                 </FormGroup>
                                             </Grid>
                                         )
@@ -275,8 +259,8 @@ const NewMealForm = () => {
                                         type="number"
                                         // step="any"
                                         name="calories"
-                                        value={newMealForm.nutritionalValues.calories}
-                                        onChange={handleInputChangeValueNumber}
+                                        value={newMealData.nutritionalValues.calories}
+                                        onChange={handleInputChange}
                                         label="calories"
                                     />
                                 </FormControl>
@@ -288,8 +272,8 @@ const NewMealForm = () => {
                                         type="number"
                                         // step="any"
                                         name="totalFats"
-                                        value={newMealForm.nutritionalValues.totalFats}
-                                        onChange={handleInputChangeValueNumber}
+                                        value={newMealData.nutritionalValues.totalFats}
+                                        onChange={handleInputChange}
                                         label="totalFats"
                                     />
                                 </FormControl>
@@ -301,8 +285,8 @@ const NewMealForm = () => {
                                         type="number"
                                         // step="any"
                                         name="saturatedFat"
-                                        value={newMealForm.nutritionalValues.saturatedFat}
-                                        onChange={handleInputChangeValueNumber}
+                                        value={newMealData.nutritionalValues.saturatedFat}
+                                        onChange={handleInputChange}
                                         label="saturatedFat"
                                     />
                                 </FormControl>
@@ -314,8 +298,8 @@ const NewMealForm = () => {
                                         type="number"
                                         // step="any"
                                         name="carbs"
-                                        value={newMealForm.nutritionalValues.carbs}
-                                        onChange={handleInputChangeValueNumber}
+                                        value={newMealData.nutritionalValues.carbs}
+                                        onChange={handleInputChange}
                                         label="carbs"
                                     />
                                 </FormControl>
@@ -327,8 +311,8 @@ const NewMealForm = () => {
                                         type="number"
                                         // step="any"
                                         name="protein"
-                                        value={newMealForm.nutritionalValues.protein}
-                                        onChange={handleInputChangeValueNumber}
+                                        value={newMealData.nutritionalValues.protein}
+                                        onChange={handleInputChange}
                                         label="protein"
                                     />
                                 </FormControl>
@@ -340,8 +324,8 @@ const NewMealForm = () => {
                                         type="number"
                                         // step="any"
                                         name="sugar"
-                                        value={newMealForm.nutritionalValues.sugar}
-                                        onChange={handleInputChangeValueNumber}
+                                        value={newMealData.nutritionalValues.sugar}
+                                        onChange={handleInputChange}
                                         label="sugar"
                                     />
                                 </FormControl>
@@ -353,8 +337,8 @@ const NewMealForm = () => {
                                         type="number"
                                         // step="any"
                                         name="fiber"
-                                        value={newMealForm.nutritionalValues.fiber}
-                                        onChange={handleInputChangeValueNumber}
+                                        value={newMealData.nutritionalValues.fiber}
+                                        onChange={handleInputChange}
                                         label="fiber"
                                     />
                                 </FormControl>
@@ -366,8 +350,8 @@ const NewMealForm = () => {
                                         type="number"
                                         // step="any"
                                         name="sodium"
-                                        value={newMealForm.nutritionalValues.sodium}
-                                        onChange={handleInputChangeValueNumber}
+                                        value={newMealData.nutritionalValues.sodium}
+                                        onChange={handleInputChange}
                                         label="sodium"
                                     />
                                 </FormControl>
