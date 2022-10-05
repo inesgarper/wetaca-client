@@ -14,9 +14,6 @@ class AuthService {
 
             if (!response || !response.data) throw new Error("Cannot login!")
 
-            console.log("DATA: ", response.data)
-            console.log(client)
-
             return response.data.login
 
         } catch (err) {
@@ -34,8 +31,6 @@ class AuthService {
             })
 
             if (!response || !response.data) throw new Error("Cannot login!")
-
-            console.log("DATA: ", response.data)
 
             return response.data.signup
         } catch (err) {
