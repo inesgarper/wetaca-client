@@ -11,43 +11,37 @@ interface Props {
 const NewSubscriptionForm = ({ setSubscriptionStage }: Props) => {
 
 
-    const [addressForm, setAddressForm] = useState({
-        street: '',
-        number: '',
-        city: '',
-        province: '',
-        postCode: ''
-    })
-
     const [newSubscriptionData, setNewSubscriptionData] = useState({
-        address: addressForm,
+        address: {
+            street: '',
+            number: '',
+            city: '',
+            province: '',
+            postCode: ''
+        },
         deliveryWeekDay: undefined
     })
 
-    // const [deliveryWeekDay, setDeliveryWeekDay] = useState('')
-
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target
-        setAddressForm({
-            ...addressForm,
-            [name]: value
-        })
-    }
-
-    useEffect(() => {
-        setNewSubscriptionData({
-            ...newSubscriptionData,
-            address: addressForm
-        })
-    }, [addressForm])
-
-    const handleWeekDayChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        let data = { ...newSubscriptionData }
         const { name, value } = e.target
 
-        setNewSubscriptionData({
-            ...newSubscriptionData,
-            [name]: value
-        })
+        if (name === 'street' || name === 'number' || name === 'city' || name === 'province' || name === 'postCode') {
+            data = {
+                ...data,
+                address: {
+                    ...data.address,
+                    [name]: value
+                }
+            }
+        } else {
+            data = {
+                ...data,
+                [name]: value
+            }
+        }
+
+        setNewSubscriptionData(data)
     }
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -80,7 +74,7 @@ const NewSubscriptionForm = ({ setSubscriptionStage }: Props) => {
                             id="street"
                             type="text"
                             name="street"
-                            value={addressForm.street}
+                            value={newSubscriptionData.address.street}
                             onChange={handleInputChange}
                             label="street"
                         />
@@ -92,7 +86,7 @@ const NewSubscriptionForm = ({ setSubscriptionStage }: Props) => {
                             id="number"
                             type="number"
                             name="number"
-                            value={addressForm.number}
+                            value={newSubscriptionData.address.number}
                             onChange={handleInputChange}
                             label="number"
                         />
@@ -104,7 +98,7 @@ const NewSubscriptionForm = ({ setSubscriptionStage }: Props) => {
                             id="city"
                             type="text"
                             name="city"
-                            value={addressForm.city}
+                            value={newSubscriptionData.address.city}
                             onChange={handleInputChange}
                             label="city"
                         />
@@ -116,7 +110,7 @@ const NewSubscriptionForm = ({ setSubscriptionStage }: Props) => {
                             id="province"
                             type="text"
                             name="province"
-                            value={addressForm.province}
+                            value={newSubscriptionData.address.province}
                             onChange={handleInputChange}
                             label="province"
                         />
@@ -128,7 +122,7 @@ const NewSubscriptionForm = ({ setSubscriptionStage }: Props) => {
                             id="postCode"
                             type="text"
                             name="postCode"
-                            value={addressForm.postCode}
+                            value={newSubscriptionData.address.postCode}
                             onChange={handleInputChange}
                             label="postCode"
                         />
@@ -139,8 +133,8 @@ const NewSubscriptionForm = ({ setSubscriptionStage }: Props) => {
                         select
                         label="Día de la semana"
                         name="deliveryWeekDay"
-                        // value={newSubscriptionData.deliveryWeekDay}
-                        onChange={handleWeekDayChange}
+                        value={newSubscriptionData.deliveryWeekDay}
+                        onChange={handleInputChange}
                         helperText="Please select a meal category"
                     >
                         {weekDaysSelect.map((option) => (

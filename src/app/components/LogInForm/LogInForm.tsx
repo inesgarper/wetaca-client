@@ -10,17 +10,20 @@ import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useNavigate } from "react-router-dom"
 
 const LogInForm = () => {
+
+    const { storeToken, authenticateUser } = useContext(AuthContext) || {}
 
     const [loginForm, setLoginForm] = useState({
         password: '',
         email: ''
     })
 
-    const { storeToken, authenticateUser } = useContext(AuthContext) || {}
-
     const [showPassword, setShowPassword] = useState<Boolean>(false)
+
+    const navigate = useNavigate()
 
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
@@ -44,6 +47,7 @@ const LogInForm = () => {
                 const token = data?.value
                 token && storeToken(token)
                 authenticateUser()
+                navigate('/')
             })
             .catch(err => console.log(err))
     }
