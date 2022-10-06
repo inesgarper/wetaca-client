@@ -1,6 +1,7 @@
 import { useState } from "react"
 import NewPaymentMethodForm from "../../components/NewPaymentMethodForm/NewPaymentMethodFrom"
 import NewSubscriptionForm from "../../components/NewSubscriptionForm/NewSubscriptionForm"
+import MyStepper from "../../components/Stepper/Stepper"
 
 const NewSubscriptionPage = () => {
 
@@ -16,6 +17,8 @@ const NewSubscriptionPage = () => {
             {
                 subscriptionStage === 1 && <NewPaymentMethodForm setSubscriptionStage={setSubscriptionStage} />
             }
+
+            <MyStepper />
 
         </>
     )

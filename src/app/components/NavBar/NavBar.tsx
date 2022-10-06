@@ -12,21 +12,23 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { AuthContext } from '../../contexts/auth.context';
 import { NavLink } from 'react-router-dom'
-import { pages } from './assets';
+import { userPages, adminPages } from './assets';
 
 
 const NavBar = () => {
-    const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+
+    const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorElNav(event.currentTarget);
+        setAnchorElNav(event.currentTarget)
     };
 
     const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
+        setAnchorElNav(null)
     };
 
-    const { logOutUser } = useContext(AuthContext)
+    const { user, isLoggedIn, logOutUser } = useContext(AuthContext)
+    const isAdmin = user?.role === 'ADMIN'
 
     return (
         <AppBar position="static">
@@ -85,7 +87,14 @@ const NavBar = () => {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.map((page) => (
+                            {!isAdmin && userPages.map((page) => (
+                                <NavLink to={page.nav}>
+                                    <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                                        <Typography textAlign="center">{page.name}</Typography>
+                                    </MenuItem>
+                                </NavLink>
+                            ))}
+                            {isAdmin && adminPages.map((page) => (
                                 <NavLink to={page.nav}>
                                     <MenuItem key={page.name} onClick={handleCloseNavMenu}>
                                         <Typography textAlign="center">{page.name}</Typography>
@@ -121,7 +130,18 @@ const NavBar = () => {
 
                     {/* MENU */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
+                        {!isAdmin && userPages.map((page) => (
+                            <NavLink to={page.nav}>
+                                <Button
+                                    key={page.name}
+                                    onClick={handleCloseNavMenu}
+                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                >
+                                    {page.name}
+                                </Button>
+                            </NavLink>
+                        ))}
+                        {isAdmin && adminPages.map((page) => (
                             <NavLink to={page.nav}>
                                 <Button
                                     key={page.name}
@@ -136,19 +156,18 @@ const NavBar = () => {
 
                     {/* MI PERFIL */}
                     <Box sx={{ flexGrow: 0 }}>
-                        {/* <NavLink to="/">
-                            <Button variant="text">Mi Cuenta</Button>
-                        </NavLink> */}
-                        <NavLink to='/registro'>
-                            <Button variant="text" sx={{ my: 2, color: 'white' }}>Registro</Button>
-                        </NavLink>
+                        {!isLoggedIn && <>
+                            <NavLink to='/registro'>
+                                <Button variant="text" sx={{ my: 2, color: 'white' }}>Registro</Button>
+                            </NavLink>
 
-                        <NavLink to='/login'>
-                            <Button variant="text" sx={{ my: 2, color: 'white' }}>Log In</Button>
-                        </NavLink>
+                            <NavLink to='/login'>
+                                <Button variant="text" sx={{ my: 2, color: 'white' }}>Log In</Button>
+                            </NavLink>
+                        </>}
+                        {isLoggedIn && <Button sx={{ my: 2, color: 'white' }} onClick={() => { logOutUser() }}>Cerrar sesión</Button>}
                     </Box>
 
-                    <Button sx={{ my: 2, color: 'white' }} onClick={() => { logOutUser() }}>Cerrar sesión</Button>
                 </Toolbar>
             </Container>
         </AppBar >

@@ -1,10 +1,11 @@
 import { Route, Routes } from "react-router-dom"
 import HomePage from "../pages/HomePage/HomePage"
 import LoginPage from "../pages/LoginPage/LoginPage"
-import MealsPage from "../pages/MenuPage/MenuPage"
+import MenuPage from "../pages/MenuPage/MenuPage"
 import NewMealPage from "../pages/NewMealPage/NewMealPage"
 import SignUpPage from "../pages/SignUpPage/SignUpPage"
 import NewSubscriptionPage from "../pages/NewSubscriptionPage/NewSubscriptionPage"
+import MealsPage from "../pages/MealsPage/MealsPage"
 
 
 const AppRoutes = () => {
@@ -19,7 +20,10 @@ const AppRoutes = () => {
             <Route path='/crear-suscripcion' element={<NewSubscriptionPage/>}/>
 
             <Route path='/crear-plato' element={<NewMealPage />} />
-            <Route path='/menu' element={<MealsPage />} />
+            <Route path='/menu' element={<MenuPage />} />
+
+            {/* ADMIN ROUTES */}
+            <Route path='/crear-menu' element={<MealsPage/>}/>
 
         </Routes>
     )

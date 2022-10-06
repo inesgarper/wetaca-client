@@ -1,4 +1,4 @@
-export const pages = [
+export const userPages = [
     {
         name: 'SUSCRIPCIÓN',
         nav: '/suscripcion'
@@ -10,5 +10,16 @@ export const pages = [
     {
         name: 'CÓMO FUNCIONA',
         nav: '/como-funciona'
+    }
+]
+
+export const adminPages = [
+    {
+        name: 'MENÚ',
+        nav: '/crear-menu'
+    },
+    {
+        name: 'PEDIDOS',
+        nav: '/pedidos'
     }
 ]
