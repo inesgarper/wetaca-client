@@ -8,7 +8,7 @@ import OutlinedInput from '@mui/material/OutlinedInput'
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import { Grid, MenuItem, Select, TextField } from '@mui/material'
+import { Grid, MenuItem, TextField } from '@mui/material'
 import { allergensCheck, categoriesSelect, typesSelect } from './assets'
 // import Stage0 from './Stage0'
 
@@ -126,7 +126,7 @@ const NewMealForm = () => {
                         <>
                             <h2>Datos de la receta</h2>
                             {/* <Stage0 setNewMealForm={setNewMealForm} handleInputChange={handleInputChange} /> */}
-                            <FormControl required sx={{ m: 1, width: '80ch' }} variant="standard">
+                            <FormControl required sx={{ m: 1, width: '80%' }} variant="standard">
                                 <InputLabel htmlFor="name">Nombre</InputLabel>
                                 <OutlinedInput
                                     id="name"
@@ -154,7 +154,7 @@ const NewMealForm = () => {
                                 ))}
                             </TextField>
 
-                            <FormControl required sx={{ m: 1, width: '80ch' }} variant="outlined">
+                            <FormControl required sx={{ m: 1, width: '80%' }} variant="outlined">
                                 <InputLabel htmlFor="ingredients">Ingredientes</InputLabel>
                                 <OutlinedInput
                                     multiline
@@ -184,7 +184,7 @@ const NewMealForm = () => {
                                 ))}
                             </TextField>
 
-                            <FormControl required sx={{ m: 1, width: '25ch' }} variant="outlined">
+                            <FormControl required sx={{ m: 1, width: '25%' }} variant="outlined">
                                 <InputLabel htmlFor="weight">Peso</InputLabel>
                                 <OutlinedInput
                                     id="weight"
@@ -196,7 +196,7 @@ const NewMealForm = () => {
                                 />
                             </FormControl>
 
-                            <FormControl required sx={{ m: 1, width: '25ch' }} variant="outlined">
+                            <FormControl required sx={{ m: 1, width: '25%' }} variant="outlined">
                                 <InputLabel htmlFor="price">Precio</InputLabel>
                                 <OutlinedInput
                                     id="price"
@@ -208,7 +208,7 @@ const NewMealForm = () => {
                                 />
                             </FormControl>
 
-                            <FormControl required sx={{ m: 1, width: '80ch' }} variant="outlined">
+                            <FormControl required sx={{ m: 1, width: '80%' }} variant="outlined">
                                 <InputLabel htmlFor="description">Descripción</InputLabel>
                                 <OutlinedInput
                                     multiline

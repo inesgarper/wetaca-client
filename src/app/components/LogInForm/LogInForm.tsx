@@ -16,7 +16,7 @@ import { CartContext } from "../../contexts/cart.context"
 const LogInForm = () => {
 
     const { storeToken, authenticateUser } = useContext(AuthContext) || {}
-    const { getCart } = useContext(CartContext) || {}
+    const { getCart } = useContext(CartContext)
 
     const [loginForm, setLoginForm] = useState({
         password: '',

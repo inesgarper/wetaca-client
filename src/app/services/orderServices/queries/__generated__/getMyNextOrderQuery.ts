@@ -9,14 +9,14 @@
 
 export interface getMyNextOrderQuery_getMyNextOrder_meals_mealID_images {
   __typename: "Images";
-  finals: (string | null)[] | null;
+  finals: string[];
 }
 
 export interface getMyNextOrderQuery_getMyNextOrder_meals_mealID {
   __typename: "Meal";
   name: string;
   price: number;
-  images: getMyNextOrderQuery_getMyNextOrder_meals_mealID_images | null;
+  images: getMyNextOrderQuery_getMyNextOrder_meals_mealID_images;
 }
 
 export interface getMyNextOrderQuery_getMyNextOrder_meals {

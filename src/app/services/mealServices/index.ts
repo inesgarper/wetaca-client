@@ -5,10 +5,12 @@ import { getMealDetailsQuery } from "./queries/__generated__/getMealDetailsQuery
 import { getMealsByCategoryQuery } from "./queries/__generated__/getMealsByCategoryQuery";
 import { getMenuQuery } from "./queries/__generated__/getMenuQuery";
 import { getNutritionalValuesQuery } from "./queries/__generated__/getNutritionalValuesQuery";
-import {getMealsToCookQuery} from "./queries/__generated__/getMealsToCookQuery"
+import { getMealsToCookQuery } from "./queries/__generated__/getMealsToCookQuery"
 import { createMealMutation } from "./mutations/__generated__/createMealMutation";
 import { MealInput } from "../../../../__generated__/globalTypes"
-import { CREATE_MEAL } from "./mutations/meal.mutations";
+import { ADD_MEAL_TO_MENU, CREATE_MEAL, REMOVE_MEAL_FROM_MENU } from "./mutations/meal.mutations";
+import { addMealToMenuMutation } from "./mutations/__generated__/addMealToMenuMutation";
+import { removeMealFromMenuMutation } from "./mutations/__generated__/removeMealFromMenuMutation";
 
 
 
@@ -20,8 +22,6 @@ class MealService {
             })
 
             if (!response || !response.data) throw new Error("Cannot get meals list!")
-
-            console.log("DATA: ", response.data)
 
             return response.data.getAllMeals
 
@@ -102,7 +102,7 @@ class MealService {
     }
 
     async getMealsToCook(): Promise<getMealsToCookQuery["getMealsToCook"]> {
-       
+
         try {
 
             const response = await client.query({
@@ -122,7 +122,7 @@ class MealService {
         try {
             const response = await client.mutate({
                 mutation: CREATE_MEAL,
-                variables: {mealData}
+                variables: { mealData }
             })
 
             if (!response || !response.data) throw new Error("Cannot create the meal!")
@@ -130,9 +130,41 @@ class MealService {
             console.log("DATA: ", response.data)
 
             return response.data.createMeal
-            
-        } catch (err){
+
+        } catch (err) {
             console.log(err)
+            throw (err)
+        }
+    }
+
+    async addMealToMenu(mealID: string): Promise<addMealToMenuMutation["addMealToMenu"]> {
+        try {
+            const response = await client.mutate({
+                mutation: ADD_MEAL_TO_MENU,
+                variables: { mealID }
+            })
+
+            if (!response || !response.data) throw new Error("Cannot add meal to menu!")
+
+            return response.data.addMealToMenu
+
+        } catch (err) {
+            throw (err)
+        }
+    }
+
+    async removeMealFromMenu(mealID: string): Promise<removeMealFromMenuMutation["removeMealFromMenu"]> {
+        try {
+            const response = await client.mutate({
+                mutation: REMOVE_MEAL_FROM_MENU,
+                variables: { mealID }
+            })
+
+            if (!response || !response.data) throw new Error("Cannot remove meal from menu!")
+
+            return response.data.removeMealFromMenu
+
+        } catch (err) {
             throw (err)
         }
     }

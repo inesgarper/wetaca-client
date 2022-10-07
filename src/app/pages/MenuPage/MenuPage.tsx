@@ -5,7 +5,7 @@ import { getMenuQuery_getMenu } from "../../services/mealServices/queries/__gene
 
 const MenuPage = () => {
 
-    const [meals, setMeals] = useState<Array<getMenuQuery_getMenu | null> | null>([])
+    const [meals, setMeals] = useState<getMenuQuery_getMenu | null>(null)
 
     useEffect(() => {
 

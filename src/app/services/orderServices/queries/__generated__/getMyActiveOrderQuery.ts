@@ -9,14 +9,14 @@
 
 export interface getMyActiveOrderQuery_getMyActiveOrder_meals_mealID_images {
   __typename: "Images";
-  finals: (string | null)[] | null;
+  finals: string[];
 }
 
 export interface getMyActiveOrderQuery_getMyActiveOrder_meals_mealID {
   __typename: "Meal";
   name: string;
   price: number;
-  images: getMyActiveOrderQuery_getMyActiveOrder_meals_mealID_images | null;
+  images: getMyActiveOrderQuery_getMyActiveOrder_meals_mealID_images;
 }
 
 export interface getMyActiveOrderQuery_getMyActiveOrder_meals {

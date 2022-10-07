@@ -8,6 +8,7 @@ interface CartContextInterface {
     getCart: () => void
     addMeal: (mealID: string) => void
     removeMeal: (mealID: string) => void
+    setOrder: React.Dispatch<React.SetStateAction<getMyActiveOrderQuery_getMyActiveOrder | null>>
 }
 
 interface Props {
@@ -18,20 +19,19 @@ const CartContext = createContext<CartContextInterface>({
     order: null,
     getCart: () => { },
     addMeal: (mealID) => { },
-    removeMeal: (mealID) => { }
+    removeMeal: (mealID) => { },
+    setOrder: () => { }
 })
 
 const CartProviderWrapper = (props: Props) => {
 
-    
     const [order, setOrder] = useState<CartContextInterface["order"] | null>(null)
-    console.log('CONTEXTO DEL CARRITO ---', order)
 
     const getCart = () => {
         orderServices
             .getMyActiveOrder()
             .then((data) => {
-                console.log(data)
+                console.log('ACTIVE ORDER --->', data)
                 setOrder(data)
             })
             .catch(err => console.log(err))
@@ -42,6 +42,7 @@ const CartProviderWrapper = (props: Props) => {
             .addMealToOrder(mealID)
             .then((data) => {
                 setOrder(data)
+                // getCart()
             })
             .catch(err => console.log(err))
     }
@@ -51,6 +52,7 @@ const CartProviderWrapper = (props: Props) => {
             .removeMealFromOrder(mealID)
             .then((data) => {
                 setOrder(data)
+                // getCart()
             })
             .catch(err => console.log(err))
     }
@@ -58,11 +60,11 @@ const CartProviderWrapper = (props: Props) => {
     useEffect(() => getCart(), [])
 
     return (
-    <>
-        <CartContext.Provider value={{order, getCart, addMeal, removeMeal}}>
-            {props.children}
-        </CartContext.Provider>
-    </>
+        <>
+            <CartContext.Provider value={{ order, setOrder, getCart, addMeal, removeMeal }}>
+                {props.children}
+            </CartContext.Provider>
+        </>
     )
 }
 

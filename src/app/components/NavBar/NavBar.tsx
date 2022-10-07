@@ -13,6 +13,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { AuthContext } from '../../contexts/auth.context';
 import { NavLink } from 'react-router-dom'
 import { userPages, adminPages } from './assets';
+import { CartContext } from '../../contexts/cart.context';
 
 
 const NavBar = () => {
@@ -28,6 +29,8 @@ const NavBar = () => {
     };
 
     const { user, isLoggedIn, logOutUser } = useContext(AuthContext)
+    const { setOrder } = useContext(CartContext)
+
     const isAdmin = user?.role === 'ADMIN'
 
     return (
@@ -165,7 +168,10 @@ const NavBar = () => {
                                 <Button variant="text" sx={{ my: 2, color: 'white' }}>Log In</Button>
                             </NavLink>
                         </>}
-                        {isLoggedIn && <Button sx={{ my: 2, color: 'white' }} onClick={() => { logOutUser() }}>Cerrar sesión</Button>}
+                        {isLoggedIn && <Button sx={{ my: 2, color: 'white' }} onClick={() => {
+                            logOutUser()
+                            setOrder(null)
+                        }}>Cerrar sesión</Button>}
                     </Box>
 
                 </Toolbar>

@@ -3,9 +3,72 @@ import { gql } from "@apollo/client";
 export const GET_ALL_MEALS = gql`
     query getAllMealsQuery {
         getAllMeals {
-            name
-            category
-            price
+            unique {
+                id
+                name
+                category
+                price
+                images{
+                    finals
+                }
+                currentlyInMenu
+                nextWeekInMenu
+            }
+            light {
+                id
+                name
+                category
+                price
+                images{
+                    finals
+                }
+                currentlyInMenu
+                nextWeekInMenu
+            }
+            full {
+                id
+                name
+                category
+                price
+                images{
+                    finals
+                }
+                currentlyInMenu
+                nextWeekInMenu
+            }
+            veggie {
+                id
+                name
+                category
+                price
+                images{
+                    finals
+                }
+                currentlyInMenu
+                nextWeekInMenu
+            }
+            starter {
+                id
+                name
+                category
+                price
+                images{
+                    finals
+                }
+                currentlyInMenu
+                nextWeekInMenu
+            }
+            dessert {
+                id
+                name
+                category
+                price
+                images{
+                    finals
+                }
+                currentlyInMenu
+                nextWeekInMenu
+            }
         }
     }
 `
@@ -40,10 +103,71 @@ export const GET_MEALS_BY_CATEGORY = gql`
 export const GET_MENU = gql`
     query getMenuQuery {
         getMenu {
-            id
-            name
-            images{
-                finals
+            unique {
+                id
+                name
+                category
+                price
+                images{
+                    finals
+                }
+                currentlyInMenu
+                nextWeekInMenu
+            }
+            light {
+                id
+                name
+                category
+                price
+                images{
+                    finals
+                }
+                currentlyInMenu
+                nextWeekInMenu
+            }
+            full {
+                id
+                name
+                category
+                price
+                images{
+                    finals
+                }
+                currentlyInMenu
+                nextWeekInMenu
+            }
+            veggie {
+                id
+                name
+                category
+                price
+                images{
+                    finals
+                }
+                currentlyInMenu
+                nextWeekInMenu
+            }
+            starter {
+                id
+                name
+                category
+                price
+                images{
+                    finals
+                }
+                currentlyInMenu
+                nextWeekInMenu
+            }
+            dessert {
+                id
+                name
+                category
+                price
+                images{
+                    finals
+                }
+                currentlyInMenu
+                nextWeekInMenu
             }
         }
     }

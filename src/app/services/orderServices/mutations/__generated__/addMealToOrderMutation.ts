@@ -9,14 +9,14 @@
 
 export interface addMealToOrderMutation_addMealToOrder_meals_mealID_images {
   __typename: "Images";
-  finals: (string | null)[] | null;
+  finals: string[];
 }
 
 export interface addMealToOrderMutation_addMealToOrder_meals_mealID {
   __typename: "Meal";
   name: string;
   price: number;
-  images: addMealToOrderMutation_addMealToOrder_meals_mealID_images | null;
+  images: addMealToOrderMutation_addMealToOrder_meals_mealID_images;
 }
 
 export interface addMealToOrderMutation_addMealToOrder_meals {

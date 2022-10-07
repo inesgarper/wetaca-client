@@ -61,10 +61,8 @@ const AuthProviderWrapper = (props: Props) => {
     const authenticateUser = () => {
         const storedToken = getToken()
         if (!storedToken) {
-            console.log('no hay token')
             logOutUser()
         } else {
-            console.log('hay token')
             const decodedToken: DecodedToken = jwt_decode(storedToken)
             const { name, lastName, email, role, _id } = decodedToken
             const user = { name, lastName, email, role, _id }
@@ -72,7 +70,6 @@ const AuthProviderWrapper = (props: Props) => {
             setIsLoggedIn(true)
             setIsLoading(false)
             setuser(user)
-
         }
     }
 
