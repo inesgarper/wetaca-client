@@ -316,7 +316,22 @@
           {
             "name": "getMyActiveOrder",
             "description": null,
-            "args": [],
+            "args": [
+              {
+                "name": "userID",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
             "type": {
               "kind": "OBJECT",
               "name": "Order",

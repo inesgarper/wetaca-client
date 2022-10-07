@@ -34,3 +34,7 @@ export interface getMyActiveOrderQuery_getMyActiveOrder {
 export interface getMyActiveOrderQuery {
   getMyActiveOrder: getMyActiveOrderQuery_getMyActiveOrder | null;
 }
+
+export interface getMyActiveOrderQueryVariables {
+  userID: string;
+}

@@ -1,6 +1,8 @@
 import jwt_decode from 'jwt-decode';
-import { createContext, useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 import { useEffect } from 'react';
+import userServices from '../services/userServices';
+import { CartContext } from './cart.context';
 
 interface AuthContextInterface {
     isLoggedIn: boolean
@@ -15,6 +17,7 @@ interface AuthContextInterface {
     storeToken: (token: string) => void
     authenticateUser: () => void
     logOutUser: () => void
+    getCurrentUser: () => void
 }
 
 interface DecodedToken {
@@ -33,14 +36,18 @@ const AuthContext = createContext<AuthContextInterface>({
     user: null,
     storeToken: (token) => { },
     authenticateUser: () => { },
-    logOutUser: () => { }
+    logOutUser: () => { },
+    getCurrentUser: () => { }
 })
 
 interface Props {
     children: JSX.Element
 }
 
+
 const AuthProviderWrapper = (props: Props) => {
+
+    const {getCart} = useContext(CartContext)
 
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
@@ -68,6 +75,7 @@ const AuthProviderWrapper = (props: Props) => {
             const decodedToken: DecodedToken = jwt_decode(storedToken)
             const { name, lastName, email, role, _id } = decodedToken
             const user = { name, lastName, email, role, _id }
+            console.log('USUARIO DEL CONTEXTO ---', user)
 
             setIsLoggedIn(true)
             setIsLoading(false)
@@ -81,12 +89,25 @@ const AuthProviderWrapper = (props: Props) => {
         setIsLoggedIn(false)
         setIsLoading(false)
         setuser(null)
+        getCart()
+    }
+
+    const getCurrentUser = () => {
+        if (!user) {
+            console.log('se cerró sesión en el cliente')
+        } else {
+
+            userServices
+                .getCurrentUser()
+                .then(data => console.log('INTERVALO ---', data))
+                .catch(err => console.log(err))
+        }
     }
 
     useEffect(() => authenticateUser(), [])
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, isLoading, user, storeToken, authenticateUser, logOutUser }}>
+        <AuthContext.Provider value={{ isLoggedIn, isLoading, user, storeToken, authenticateUser, logOutUser, getCurrentUser }}>
             {props.children}
         </AuthContext.Provider>
     )

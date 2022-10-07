@@ -68,10 +68,11 @@ class OrderService {
         }
     }
 
-    async getMyActiveOrder(): Promise<getMyActiveOrderQuery["getMyActiveOrder"]> {
+    async getMyActiveOrder(userID: string): Promise<getMyActiveOrderQuery["getMyActiveOrder"]> {
         try {
             const response = await client.query({
-                query: GET_MY_ACTIVE_ORDER
+                query: GET_MY_ACTIVE_ORDER,
+                variables: { userID }
             })
 
             if (!response || !response.data) throw new Error("Cannot get active order")

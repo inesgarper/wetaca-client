@@ -10,3 +10,13 @@ export const GET_ALL_USERS = gql`
         }
     }
 `
+
+export const GET_CURRENT_USER = gql`
+    query getCurrentUserQuery {
+        getCurrentUser {
+            name
+            email
+            id
+        }
+    }
+`
