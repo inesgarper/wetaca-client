@@ -54,8 +54,8 @@ export const GET_NEXT_WEEK_ORDERS = gql`
 `
 
 export const GET_MY_ACTIVE_ORDER = gql`
-    query getMyActiveOrderQuery{
-        getMyActiveOrder {
+    query getMyActiveOrderQuery($userID: ID!){
+        getMyActiveOrder(userID: $userID) {
             price
             meals {
                 mealID {
