@@ -173,6 +173,79 @@ export const GET_MENU = gql`
     }
 `
 
+export const GET_NEXT_WEEK_MENU = gql`
+    query getNextWeekMenuQuery {
+        getNextWeekMenu {
+            unique {
+                id
+                name
+                category
+                price
+                images{
+                    finals
+                }
+                currentlyInMenu
+                nextWeekInMenu
+            }
+            light {
+                id
+                name
+                category
+                price
+                images{
+                    finals
+                }
+                currentlyInMenu
+                nextWeekInMenu
+            }
+            full {
+                id
+                name
+                category
+                price
+                images{
+                    finals
+                }
+                currentlyInMenu
+                nextWeekInMenu
+            }
+            veggie {
+                id
+                name
+                category
+                price
+                images{
+                    finals
+                }
+                currentlyInMenu
+                nextWeekInMenu
+            }
+            starter {
+                id
+                name
+                category
+                price
+                images{
+                    finals
+                }
+                currentlyInMenu
+                nextWeekInMenu
+            }
+            dessert {
+                id
+                name
+                category
+                price
+                images{
+                    finals
+                }
+                currentlyInMenu
+                nextWeekInMenu
+            }
+        }
+    }
+`
+
 export const GET_MEALS_TO_COOK = gql`
     query getMealsToCookQuery {
         getMealsToCook {

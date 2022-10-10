@@ -1,5 +1,5 @@
 import { client } from "../../graphql";
-import { GET_ALL_MEALS, GET_MEALS_BY_CATEGORY, GET_MEALS_TO_COOK, GET_MEAL_DETAILS, GET_MENU, GET_NUTRITIONAL_VALUES } from "./queries/meal.queries";
+import { GET_ALL_MEALS, GET_MEALS_BY_CATEGORY, GET_MEALS_TO_COOK, GET_MEAL_DETAILS, GET_MENU, GET_NEXT_WEEK_MENU, GET_NUTRITIONAL_VALUES } from "./queries/meal.queries";
 import { getAllMealsQuery } from "./queries/__generated__/getAllMealsQuery";
 import { getMealDetailsQuery } from "./queries/__generated__/getMealDetailsQuery";
 import { getMealsByCategoryQuery } from "./queries/__generated__/getMealsByCategoryQuery";
@@ -11,6 +11,7 @@ import { MealInput } from "../../../../__generated__/globalTypes"
 import { ADD_MEAL_TO_MENU, CREATE_MEAL, REMOVE_MEAL_FROM_MENU } from "./mutations/meal.mutations";
 import { addMealToMenuMutation } from "./mutations/__generated__/addMealToMenuMutation";
 import { removeMealFromMenuMutation } from "./mutations/__generated__/removeMealFromMenuMutation";
+import { getNextWeekMenuQuery } from "./queries/__generated__/getNextWeekMenuQuery";
 
 
 
@@ -95,6 +96,22 @@ class MealService {
             if (!response || !response.data) throw new Error(`Cannot get menu`)
 
             return response.data.getMenu
+
+        } catch (err) {
+            throw (err)
+        }
+    }
+
+    async getNextWeekMenu(): Promise<getNextWeekMenuQuery["getNextWeekMenu"]> {
+        try {
+
+            const response = await client.query({
+                query: GET_NEXT_WEEK_MENU
+            })
+
+            if (!response || !response.data) throw new Error(`Cannot get next week's menu`)
+
+            return response.data.getNextWeekMenu
 
         } catch (err) {
             throw (err)

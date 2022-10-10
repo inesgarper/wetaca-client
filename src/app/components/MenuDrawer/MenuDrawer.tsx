@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from 'react'
-import { getMenuQuery_getMenu } from '../../services/mealServices/queries/__generated__/getMenuQuery'
+import { getNextWeekMenuQuery_getNextWeekMenu } from '../../services/mealServices/queries/__generated__/getNextWeekMenuQuery'
 import mealServices from '../../services/mealServices'
 import Box from '@mui/material/Box'
 import SwipeableDrawer from '@mui/material/SwipeableDrawer'
@@ -22,15 +22,20 @@ const MenuDrawer = () => {
         right: false,
     })
 
-    const [meals, setMeals] = useState<getMenuQuery_getMenu | null>(null)
+    const [meals, setMeals] = useState<getNextWeekMenuQuery_getNextWeekMenu | null>(null)
 
-    useEffect(() => {
-
+    const getNextWeekMenu = () => {
         mealServices
-            .getMenu()
-            .then(data => setMeals(data))
+            .getNextWeekMenu()
+            .then(data => {
+                console.log('desde el server--->', data)
+                setMeals(data)
+            })
             .catch(err => console.log(err))
-    }, [])
+    }
+    useEffect(() => {
+        getNextWeekMenu()
+    }, [state])
 
     const toggleDrawer = (anchor: Anchor, open: boolean) =>
         (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -54,26 +59,84 @@ const MenuDrawer = () => {
             onKeyDown={toggleDrawer(anchor, false)}
         >
             <List>
-                {/* {meals.map((text, index) => (
-                    <ListItem key={text} disablePadding>
+                <h4>Platos Únicos</h4>
+                {meals?.unique && meals?.unique.map(meal => (
+                    <ListItem key={meal?.id} disablePadding>
                         <ListItemButton>
                             <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                {meal?.name}
                             </ListItemIcon>
-                            <ListItemText primary={text} />
+                            {/* <ListItemText primary={meal?.name} /> */}
                         </ListItemButton>
                     </ListItem>
-                ))} */}
+                ))}
             </List>
             <Divider />
             <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem key={text} disablePadding>
+                <h4>Platos Ligeros</h4>
+                {meals?.light && meals?.light.map(meal => (
+                    <ListItem key={meal?.id} disablePadding>
                         <ListItemButton>
                             <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                {meal?.name}
                             </ListItemIcon>
-                            <ListItemText primary={text} />
+                            {/* <ListItemText primary={meal?.name} /> */}
+                        </ListItemButton>
+                    </ListItem>
+                ))}
+            </List>
+            <Divider />
+            <List>
+                <h4>Platos Completos</h4>
+                {meals?.full && meals?.full.map(meal => (
+                    <ListItem key={meal?.id} disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                {meal?.name}
+                            </ListItemIcon>
+                            {/* <ListItemText primary={meal?.name} /> */}
+                        </ListItemButton>
+                    </ListItem>
+                ))}
+            </List>
+            <Divider />
+            <List>
+                <h4>Veggie</h4>
+                {meals?.veggie && meals?.veggie.map(meal => (
+                    <ListItem key={meal?.id} disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                {meal?.name}
+                            </ListItemIcon>
+                            {/* <ListItemText primary={meal?.name} /> */}
+                        </ListItemButton>
+                    </ListItem>
+                ))}
+            </List>
+            <Divider />
+            <List>
+                <h4>Entrantes</h4>
+                {meals?.starter && meals?.starter.map(meal => (
+                    <ListItem key={meal?.id} disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                {meal?.name}
+                            </ListItemIcon>
+                            {/* <ListItemText primary={meal?.name} /> */}
+                        </ListItemButton>
+                    </ListItem>
+                ))}
+            </List>
+            <Divider />
+            <List>
+                <h4>Postres</h4>
+                {meals?.dessert && meals?.dessert.map(meal => (
+                    <ListItem key={meal?.id} disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                {meal?.name}
+                            </ListItemIcon>
+                            {/* <ListItemText primary={meal?.name} /> */}
                         </ListItemButton>
                     </ListItem>
                 ))}
@@ -85,7 +148,7 @@ const MenuDrawer = () => {
         <div>
             {(['right'] as const).map((anchor) => (
                 <Fragment key={anchor}>
-                    <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+                    <Button onClick={toggleDrawer(anchor, true)}>Próximo Menú</Button>
                     <SwipeableDrawer
                         anchor={anchor}
                         open={state[anchor]}

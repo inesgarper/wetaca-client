@@ -141,6 +141,18 @@
             "deprecationReason": null
           },
           {
+            "name": "getNextWeekMenu",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "SortedMeals",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "getMealsToCook",
             "description": null,
             "args": [],
